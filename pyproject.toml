@@ -26,7 +26,7 @@ Homepage = "https://github.com/OliverACollins/Grid-Illusions"
 Issues = "https://github.com/OliverACollins/Grid-Illusions/issues"
 
 [project.scripts]
-grid_illusions = "grid_illusions.cli:main"
+grid-illusions = "grid_illusions.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/grid_illusions"]
