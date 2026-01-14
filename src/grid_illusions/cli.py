@@ -47,7 +47,7 @@ def main():
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
-            outline_colour=args.outline,
+            outline_colour=args.outline_colour,
             outline_width=args.outline_width
         )
     elif args.illusion == "scintillating":
@@ -58,7 +58,7 @@ def main():
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
             dot_radius=args.dot_radius,
-            outline_colour=args.outline,
+            outline_colour=args.outline_colour,
             outline_width=args.outline_width
         )
 
