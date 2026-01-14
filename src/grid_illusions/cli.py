@@ -19,9 +19,9 @@ def main():
     parser.add_argument("--side", type=int, default=200, help="Size of the square (pixels)")
     parser.add_argument("--img_width", type=int, default=800, help="Width of canvas")
     parser.add_argument("--img_height", type=int, default=600, help="Height of canvas")
-    parser.add_argument("--grid_zoom", type=float, default=1.0, help="Zoom factor for the grid")
+    parser.add_argument("--grid_zoom", type=float, default=1.1, help="Zoom factor for the grid")
     parser.add_argument("--grid_width", type=int, default=10, help="Width of grid lines")
-    parser.add_argument("--output", type=str, default="grid.png", help="Output filename")
+    parser.add_argument("--output", type=str, default="hermann.png", help="Output filename")
 
     args = parser.parse_args()
 
