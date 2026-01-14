@@ -47,6 +47,6 @@ def draw_grid(cells=4, side=200, img_size=(800, 600), grid_zoom=1.1, grid_width=
     
     return img
 
-if __name__ == "__main__":
-    img = draw_grid(cells=4, grid_zoom=1.2)
-    img.show()
+#if __name__ == "__main__":
+    #img = draw_grid(cells=4, grid_zoom=1.2)
+    #img.show()
