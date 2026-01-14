@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "grid-illusions"
+version = "1.0.0"
+authors = [
+    {name = "Oliver A Collins", email = "oliver7collins@outlook.com"}
+]
+description = "test"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+    "Operating System :: Microsoft :: Windows :: Windows 11",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/OliverACollins/Grid-Illusions"
+Issues = "https://github.com/OliverACollins/Grid-Illusions/issues"
+
+[project.scripts]
+grid_illusions = "grid_illusions.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/grid_illusions"]
