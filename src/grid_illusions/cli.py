@@ -8,6 +8,12 @@ def main():
     parser = argparse.ArgumentParser(description="Draw a grid illusion!", formatter_class=argparse.ArgumentDefaultsHelpFormatter, add_help=False)
     subparsers = parser.add_subparsers(dest="illusion", required=True)
 
+    parser.add_argument(
+    "--help",
+    action="help",
+    help="Help for CLI"
+)
+    
     # ---- Hermann ----
     hermann = subparsers.add_parser(
         "hermann",
