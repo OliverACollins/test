@@ -29,6 +29,7 @@ def main():
     parser.add_argument("--grid_zoom", type=float, metavar="", help="Zoom factor for the grid")
     parser.add_argument("--grid_width", type=int, metavar="", help="Width of grid lines")
     parser.add_argument("--dot_radius", type=int, metavar="", help="Radius of dots (for scintillating grid)")
+    parser.add_argument("--square_colour", default="black", help="Fill colour of the square")
     parser.add_argument("--outline_colour", type =str, default="orange", metavar="", help="Colour outline for square")
     parser.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of the square outline")
     parser.add_argument("--save", type=str, default="illusion.png", metavar="", help="Output filename")
@@ -47,6 +48,7 @@ def main():
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
+            square_colour=args.square_colour,
             outline_colour=args.outline_colour,
             outline_width=args.outline_width
         )
@@ -58,6 +60,7 @@ def main():
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
             dot_radius=args.dot_radius,
+            square_colour=args.square_colour,
             outline_colour=args.outline_colour,
             outline_width=args.outline_width
         )

@@ -1,6 +1,6 @@
 from PIL import Image, ImageDraw
 
-def draw_hermann_grid(cells=5, side=400, img_size=(800, 600), grid_zoom=1.1, grid_width=15, outline_colour="orange", outline_width=4):
+def draw_hermann_grid(cells=5, side=400, img_size=(800, 600), grid_zoom=1.1, grid_width=15, square_colour="black", outline_colour="orange", outline_width=4):
     """
     Draw a square with a grid inside.
 
@@ -22,7 +22,7 @@ def draw_hermann_grid(cells=5, side=400, img_size=(800, 600), grid_zoom=1.1, gri
     y = (img.size[1] - side) // 2
 
     # Draw outer square
-    draw.rectangle([x, y, x + side, y + side], width=2, fill="black")
+    draw.rectangle([x, y, x + side, y + side], width=2, fill=square_colour)
 
     # Scale zoom
     step = (side / cells) * grid_zoom

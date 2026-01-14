@@ -1,6 +1,6 @@
 from PIL import Image, ImageDraw
 
-def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=4, dot_radius=3, outline_colour="orange", outline_width=4):
+def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=4, dot_radius=3, square_colour="black", outline_colour="orange", outline_width=4):
     """
     Draw a scintillating grid illusion.
     
@@ -23,7 +23,7 @@ def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1
     y = (img.size[1] - side) // 2
 
     # Fill the square with black
-    draw.rectangle([x, y, x + side, y + side], fill="black")
+    draw.rectangle([x, y, x + side, y + side], fill=square_colour)
 
     # Scale zoom
     step = (side / cells) * grid_zoom
