@@ -18,9 +18,11 @@ def main():
     hermann = subparsers.add_parser(
         "hermann",
         help="Hermann grid illusion",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        add_help=False
     )
     
+    hermann.add_argument("--help", action="help", help="")
     hermann.add_argument("--cells", type=int, default=5, metavar="", help="Number of grid cells")
     hermann.add_argument("--size", type=int, default=400, metavar="", help="Size of the square (pixels)")
     hermann.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
@@ -39,9 +41,11 @@ def main():
     scintillating = subparsers.add_parser(
         "scintillating",
         help="Scintillating grid illusion",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        add_help=False
     )
-    
+
+    scintillating.add_argument("--help", action="help", help="")
     scintillating.add_argument("--cells", type=int, default=12, metavar="", help="Number of grid cells")
     scintillating.add_argument("--size", type=int, default =400, metavar="", help="Size of the square (pixels)")
     scintillating.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
@@ -62,9 +66,11 @@ def main():
     bergen = subparsers.add_parser(
         "bergen",
         help="Bergen grid illusion",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        add_help=False
     )
     
+    bergen.add_argument("--help", action="help", help="")
     bergen.add_argument("--cells", type=int, default=10, metavar="", help="Number of grid cells")
     bergen.add_argument("--size", type=int, default=400, metavar="", help="Size of the square (pixels)")
     bergen.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
