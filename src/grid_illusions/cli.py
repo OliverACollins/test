@@ -4,49 +4,81 @@ from grid_illusions.scintillating_grid import draw_scintillating_grid
 from grid_illusions.bergen_grid import draw_bergen_grid
 
 
-def add_common_args(p):
-    p.add_argument("--size", type=int, default=400)
-    p.add_argument("--img-width", type=int, default=800)
-    p.add_argument("--img-height", type=int, default=600)
-    p.add_argument("--grid-zoom", type=float, default=1.05)
-    p.add_argument("--square-colour", default="black")
-    p.add_argument("--outline-colour", default="black")
-    p.add_argument("--outline-width", type=int, default=4)
-    p.add_argument("--save", default="illusion.png")
-
-
 def main():
-    parser = argparse.ArgumentParser(description="Draw a grid illusion!")
+    parser = argparse.ArgumentParser(description="Draw a grid illusion!", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     subparsers = parser.add_subparsers(dest="illusion", required=True)
 
     # ---- Hermann ----
-    hermann = subparsers.add_parser("hermann", help="Hermann grid illusion")
-    add_common_args(hermann)
-    hermann.add_argument("--cells", type=int, default=5)
-    hermann.add_argument("--grid-width", type=int, default=15)
-    hermann.add_argument("--blur-strength", type=int, default=0)
-    hermann.add_argument("--vertical-colour", default="white")
-    hermann.add_argument("--horizontal-colour", default="white")
+    hermann = subparsers.add_parser(
+        "hermann",
+        help="Hermann grid illusion",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    
+    hermann.add_argument("--help", action="help", help="Help for CLI")
+    hermann.add_argument("--cells", type=int, metavar="", help="Number of grid cells")
+    hermann.add_argument("--size", type=int, default = 400, metavar="", help="Size of the square (pixels)")
+    hermann.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
+    hermann.add_argument("--img_height", type=int, default=600, metavar="", help="Height of canvas")
+    hermann.add_argument("--grid_zoom", type=float, default = 1.05, metavar="", help="Zoom factor for the grid")
+    hermann.add_argument("--grid_width", type=int, metavar="", help="Width of grid lines")
+    hermann.add_argument("--blur_strength", type=int, metavar="", help="Strength of Gaussian blur")
+    hermann.add_argument("--dot_radius", type=int, default = 3, metavar="", help="Radius of dots (ONLY for scintillating grid)")
+    hermann.add_argument("--dot_colour", type=str, default="white", metavar="", help="Colour of dots (ONLY for scintillating grid)")
+    hermann.add_argument("--square_colour", default="black", metavar="", help="Square fill colour")
+    hermann.add_argument("--vertical_colour", metavar="", help="Vertical grid line colour")
+    hermann.add_argument("--horizontal_colour", metavar="", help="Horizontal grid line colour")
+    hermann.add_argument("--outline_colour", type =str, default="black", metavar="", help="Colour outline for square")
+    hermann.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of square outline")
+    hermann.add_argument("--save", type=str, default="illusion.png", metavar="", help="Output filename (MUST specify file extension)")
 
     # ---- Scintillating ----
-    scint = subparsers.add_parser("scintillating", help="Scintillating grid illusion")
-    add_common_args(scint)
-    scint.add_argument("--cells", type=int, default=12)
-    scint.add_argument("--grid-width", type=int, default=4)
-    scint.add_argument("--blur-strength", type=int, default=0)
-    scint.add_argument("--dot-radius", type=int, default=3)
-    scint.add_argument("--dot-colour", default="white")
-    scint.add_argument("--vertical-colour", default="grey")
-    scint.add_argument("--horizontal-colour", default="grey")
+    scintillating = subparsers.add_parser(
+        "scintillating",
+        help="Scintillating grid illusion",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    
+    scintillating.add_argument("--help", action="help", help="Help for CLI")
+    scintillating.add_argument("--cells", type=int, metavar="", help="Number of grid cells")
+    scintillating.add_argument("--size", type=int, default = 400, metavar="", help="Size of the square (pixels)")
+    scintillating.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
+    scintillating.add_argument("--img_height", type=int, default=600, metavar="", help="Height of canvas")
+    scintillating.add_argument("--grid_zoom", type=float, default = 1.05, metavar="", help="Zoom factor for the grid")
+    scintillating.add_argument("--grid_width", type=int, metavar="", help="Width of grid lines")
+    scintillating.add_argument("--blur_strength", type=int, metavar="", help="Strength of Gaussian blur")
+    scintillating.add_argument("--dot_radius", type=int, default = 3, metavar="", help="Radius of dots (ONLY for scintillating grid)")
+    scintillating.add_argument("--dot_colour", type=str, default="white", metavar="", help="Colour of dots (ONLY for scintillating grid)")
+    scintillating.add_argument("--square_colour", default="black", metavar="", help="Square fill colour")
+    scintillating.add_argument("--vertical_colour", metavar="", help="Vertical grid line colour")
+    scintillating.add_argument("--horizontal_colour", metavar="", help="Horizontal grid line colour")
+    scintillating.add_argument("--outline_colour", type =str, default="black", metavar="", help="Colour outline for square")
+    scintillating.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of square outline")
+    scintillating.add_argument("--save", type=str, default="illusion.png", metavar="", help="Output filename (MUST specify file extension)")
 
     # ---- Bergen ----
-    bergen = subparsers.add_parser("bergen", help="Bergen grid illusion")
-    add_common_args(bergen)
-    bergen.add_argument("--cells", type=int, default=10)
-    bergen.add_argument("--grid-width", type=int, default=5)
-    bergen.add_argument("--blur-strength", type=int, default=4)
-    bergen.add_argument("--vertical-colour", default="white")
-    bergen.add_argument("--horizontal-colour", default="white")
+    bergen = subparsers.add_parser(
+        "bergen",
+        help="Bergen grid illusion",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    
+    bergen.add_argument("--help", action="help", help="Help for CLI")
+    bergen.add_argument("--cells", type=int, metavar="", help="Number of grid cells")
+    bergen.add_argument("--size", type=int, default = 400, metavar="", help="Size of the square (pixels)")
+    bergen.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
+    bergen.add_argument("--img_height", type=int, default=600, metavar="", help="Height of canvas")
+    bergen.add_argument("--grid_zoom", type=float, default = 1.05, metavar="", help="Zoom factor for the grid")
+    bergen.add_argument("--grid_width", type=int, metavar="", help="Width of grid lines")
+    bergen.add_argument("--blur_strength", type=int, metavar="", help="Strength of Gaussian blur")
+    bergen.add_argument("--dot_radius", type=int, default = 3, metavar="", help="Radius of dots (ONLY for scintillating grid)")
+    bergen.add_argument("--dot_colour", type=str, default="white", metavar="", help="Colour of dots (ONLY for scintillating grid)")
+    bergen.add_argument("--square_colour", default="black", metavar="", help="Square fill colour")
+    bergen.add_argument("--vertical_colour", metavar="", help="Vertical grid line colour")
+    bergen.add_argument("--horizontal_colour", metavar="", help="Horizontal grid line colour")
+    bergen.add_argument("--outline_colour", type =str, default="black", metavar="", help="Colour outline for square")
+    bergen.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of square outline")
+    bergen.add_argument("--save", type=str, default="illusion.png", metavar="", help="Output filename (MUST specify file extension)")
 
     args = parser.parse_args()
 
