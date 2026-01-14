@@ -4,6 +4,30 @@
 ## Rationale
 The purpose of creating this Python package was to provide an easy-to-use tool for developing simple grid illusions, tractable for implementation within psychological paradigms. This is the first package that I am aware of to feature all three grid illusions.
 
+## Illusions included in this package
+### Hermann grid illusion
+First described in 1870<sup>1</sup>, the Hermann grid illusion is prototypically created when looking at a white grid on top of a black background. The optical illusion experienced consists of deceptively seeing relatively faint dark patches appearing at the intersections of the grid lines.
+
+<figure>
+ <img src = "src/media/hermann.png" alt = "Default Hermann grid illusion"/>
+</figure>
+
+
+## Scintillating grid illusion
+Created in the 1990s<sup>2</sup>, 
+
+<figure>
+ <img src = "src/media/scintillating.png" alt = "Default scintillating grid illusion"/>
+</figure>
+
+## Bergen grid illusion
+TEXT HERE
+
+<figure>
+ <img src = "src/media/bergen.png" alt = "Default Bergen grid illusion"/>
+</figure>
+
+
 ## Installation
 Install directly from this GitHub repository in Python terminal:
 
@@ -11,30 +35,20 @@ Install directly from this GitHub repository in Python terminal:
 pip install https://github.com/OliverACollins/Grid-Illusions/zipball/main
 ```
 
-## Hermann grid illusion
-First described in 1870<sup>1</sup>, the Hermann grid illusion is prototypically created when looking at a white grid on top of a black background. The optical illusion experienced consists of deceptively seeing relatively faint dark patches appearing at the intersections of the grid lines.
+## Usage: CLI
+To generate each illusion, you can run the following commands in the Python terminal:
 
-<figure>
- <img src = "src/media/hermann.png" alt = "Default Hermann grid"/>
-<figcaption><i>Default Hermann grid</i></figcaption>
-</figure>
+```python
+grid-illusions hermann
+```
 
-### Usage - CLI
+```python
+grid-illusions scintillating
+```
 
-
-### Usage - Python script
-
-
-## Scintillating grid illusion
-Created in the 1990s<sup>2</sup>, 
-
-<figure>
- <img src = "src/media/scintillating.png" alt = "Default scintillating grid"/>
-<figcaption><i>Default scintillating grid</i></figcaption>
-</figure>
-
-## Bergen grid illusion
-
+```python
+grid-illusions bergen
+```
 
 
 ## References
