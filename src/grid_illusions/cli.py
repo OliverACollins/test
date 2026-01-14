@@ -22,7 +22,7 @@ ILLUSION_DEFAULTS = {
 def main():
     parser = argparse.ArgumentParser(description="Draw a grid illusion!", add_help = False)
     parser.add_argument("--help", action="help", help="Help for CLI")
-    parser.add_argument("--illusion", type=str, default="hermann", help="Type of illusion to draw", choices=ILLUSION_DEFAULTS.keys(),metavar="{hermann,scintillating}",)
+    parser.add_argument("--illusion", type=str, default="hermann", help=f"Type of illusion to draw  {{{','.join(ILLUSION_DEFAULTS.keys())}}}")
     parser.add_argument("--cells", type=int, metavar="", help="Number of grid cells")
     parser.add_argument("--size", type=int, metavar="", help="Size of the square (pixels)")
     parser.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
