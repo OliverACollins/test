@@ -32,13 +32,14 @@ def main():
     parser.add_argument("--img_height", type=int, default=600, metavar="", help="Height of canvas")
     parser.add_argument("--grid_zoom", type=float, metavar="", help="Zoom factor for the grid")
     parser.add_argument("--grid_width", type=int, metavar="", help="Width of grid lines")
-    parser.add_argument("--dot_radius", type=int, metavar="", help="Radius of dots (for scintillating grid)")
+    parser.add_argument("--dot_radius", type=int, metavar="", help="Radius of dots (ONLY for scintillating grid)")
+    parser.add_argument("--dot_colour", type=int, default="white", metavar="", help="Colour of dots (ONLY for scintillating grid)")
     parser.add_argument("--square_colour", default="black", metavar="", help="Fill colour of the square")
     parser.add_argument("--vertical_colour", metavar="", help="Vertical grid line colour")
     parser.add_argument("--horizontal_colour", metavar="", help="Horizontal grid line colour")
     parser.add_argument("--outline_colour", type =str, default="orange", metavar="", help="Colour outline for square")
     parser.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of the square outline")
-    parser.add_argument("--save", type=str, default="illusion.png", metavar="", help="Output filename")
+    parser.add_argument("--save", type=str, default="illusion.png", metavar="", help="Output filename (specify file extension)")
 
     args = parser.parse_args()
 
@@ -68,6 +69,7 @@ def main():
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
             dot_radius=args.dot_radius,
+            dot_colour=args.dot_colour,
             square_colour=args.square_colour,
             vertical_colour=args.vertical_colour,
             horizontal_colour=args.horizontal_colour,

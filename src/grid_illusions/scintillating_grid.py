@@ -1,6 +1,6 @@
 from PIL import Image, ImageDraw
 
-def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=4, dot_radius=3, square_colour="black", vertical_colour="grey", horizontal_colour="grey", outline_colour="orange", outline_width=4):
+def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=4, dot_radius=3, dot_colour="white", square_colour="black", vertical_colour="grey", horizontal_colour="grey", outline_colour="orange", outline_width=4):
     """
     Draw a scintillating grid illusion.
     
@@ -50,7 +50,7 @@ def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1
             yi = offset_y + j * step
             draw.ellipse(
                 [xi - dot_radius, yi - dot_radius, xi + dot_radius, yi + dot_radius],
-                fill="white"
+                fill=dot_colour
             )
 
     # Draw outer square outline
