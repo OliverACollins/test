@@ -1,7 +1,7 @@
 # src/grid_illusions/scintillating_grid.py
 from PIL import Image, ImageDraw
 
-def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=4, dot_radius=3):
+def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=4, dot_radius=3, outline = "orange"):
     """
     Draw a scintillating grid illusion.
     
@@ -56,7 +56,7 @@ def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1
             )
 
     # Draw outer square outline
-    draw.rectangle([x, y, x + side, y + side], outline="orange", width=4)
+    draw.rectangle([x, y, x + side, y + side], outline=outline, width=4)
 
     return img
 
