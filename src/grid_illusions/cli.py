@@ -3,48 +3,53 @@ from grid_illusions.hermann_grid import draw_hermann_grid
 from grid_illusions.scintillating_grid import draw_scintillating_grid
 from grid_illusions.bergen_grid import draw_bergen_grid
 
-ILLUSION_DEFAULTS = {
-    "hermann": {
-        "cells": 5,
-        "size": 400,
-        "grid_zoom": 1.05,
-        "grid_width": 15,
-        "blur_strength": 0,
-        "vertical_colour": "white",
-        "horizontal_colour": "white",
-    },
-    "scintillating": {
-        "cells": 12,
-        "size": 400,
-        "grid_zoom": 1.05,
-        "grid_width": 4,
-        "blur_strength": 0,
-        "dot_radius": 3,
-        "vertical_colour": "grey",
-        "horizontal_colour": "grey"
-    },
-    "bergen": {
-        "cells": 10,
-        "size": 400,
-        "grid_zoom": 1.05,
-        "grid_width": 5,
-        "blur_strength": 4,
-        "vertical_colour": "white",
-        "horizontal_colour": "white"
-    }
-}
-
-class NoNoneDefaultsFormatter(argparse.ArgumentDefaultsHelpFormatter):
-    def _get_help_string(self, action):
-        if action.default is None:
-            return action.help
-        return super()._get_help_string(action)
-
 def main():
-    parser = argparse.ArgumentParser(description="Draw a grid illusion!", formatter_class=NoNoneDefaultsFormatter, add_help = False)
+    parser = argparse.ArgumentParser(
+        description="Draw a grid illusion!",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        add_help = False
+    )
+
+    parser.add_argument(
+    "--help",
+    action="help",
+    help="Help for CLI"
+)
+    
+    subparsers = parser.add_subparsers(dest="illusion", required=True)
+
+    # ---- Hermann grid ----
+    hermann = subparsers.add_parser(
+        "hermann",
+        help="Hermann grid illusion",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        add_help = False
+    )
 
     parser.add_argument("--help", action="help", help="Help for CLI")
-    parser.add_argument("--illusion", type=str, default="hermann", metavar="", help=f"Type of illusion to draw  {{{','.join(ILLUSION_DEFAULTS.keys())}}}")
+    parser.add_argument("--cells", type=int, metavar="", help="Number of grid cells")
+    parser.add_argument("--size", type=int, default = 400, metavar="", help="Size of the square (pixels)")
+    parser.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
+    parser.add_argument("--img_height", type=int, default=600, metavar="", help="Height of canvas")
+    parser.add_argument("--grid_zoom", type=float, default = 1.05, metavar="", help="Zoom factor for the grid")
+    parser.add_argument("--grid_width", type=int, metavar="", help="Width of grid lines")
+    parser.add_argument("--blur_strength", type=int, metavar="", help="Strength of Gaussian blur")
+    parser.add_argument("--square_colour", default="black", metavar="", help="Square fill colour")
+    parser.add_argument("--vertical_colour", metavar="", help="Vertical grid line colour")
+    parser.add_argument("--horizontal_colour", metavar="", help="Horizontal grid line colour")
+    parser.add_argument("--outline_colour", type =str, default="black", metavar="", help="Colour outline for square")
+    parser.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of square outline")
+    parser.add_argument("--save", type=str, default="illusion.png", metavar="", help="Output filename (MUST specify file extension)")
+
+    #---- Scintillating grid ----
+    scintillating = subparsers.add_parser(
+        "scintillating",
+        help="Scintillating grid illusion",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        add_help = False
+    )
+
+    parser.add_argument("--help", action="help", help="Help for CLI")
     parser.add_argument("--cells", type=int, metavar="", help="Number of grid cells")
     parser.add_argument("--size", type=int, default = 400, metavar="", help="Size of the square (pixels)")
     parser.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
@@ -61,12 +66,30 @@ def main():
     parser.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of square outline")
     parser.add_argument("--save", type=str, default="illusion.png", metavar="", help="Output filename (MUST specify file extension)")
 
-    args = parser.parse_args()
+    #---- Bergen grid ----
+    bergen = subparsers.add_parser(
+        "bergen",
+        help="Bergen grid illusion",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        add_help = False
+    )
 
-    defaults = ILLUSION_DEFAULTS[args.illusion]
-    for key, value in defaults.items():
-        if getattr(args, key) is None:
-            setattr(args, key, value)
+    parser.add_argument("--help", action="help", help="Help for CLI")
+    parser.add_argument("--cells", type=int, metavar="", help="Number of grid cells")
+    parser.add_argument("--size", type=int, default = 400, metavar="", help="Size of the square (pixels)")
+    parser.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
+    parser.add_argument("--img_height", type=int, default=600, metavar="", help="Height of canvas")
+    parser.add_argument("--grid_zoom", type=float, default = 1.05, metavar="", help="Zoom factor for the grid")
+    parser.add_argument("--grid_width", type=int, metavar="", help="Width of grid lines")
+    parser.add_argument("--blur_strength", type=int, metavar="", help="Strength of Gaussian blur")
+    parser.add_argument("--square_colour", default="black", metavar="", help="Square fill colour")
+    parser.add_argument("--vertical_colour", metavar="", help="Vertical grid line colour")
+    parser.add_argument("--horizontal_colour", metavar="", help="Horizontal grid line colour")
+    parser.add_argument("--outline_colour", type =str, default="black", metavar="", help="Colour outline for square")
+    parser.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of square outline")
+    parser.add_argument("--save", type=str, default="illusion.png", metavar="", help="Output filename (MUST specify file extension)")
+
+    args = parser.parse_args()
 
     if args.illusion == "hermann":
         img = draw_hermann_grid(
@@ -113,7 +136,7 @@ def main():
             outline_colour=args.outline_colour,
             outline_width=args.outline_width
         )
-
+    
     img.save(args.save)
     print(f"Saved {args.illusion} illusion to {args.save}")
     img.show()
