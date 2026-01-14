@@ -100,8 +100,6 @@ def main():
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
             blur_strength=args.blur_strength,
-            dot_radius=args.dot_radius,
-            dot_colour=args.dot_colour,
             square_colour=args.square_colour,
             vertical_colour=args.vertical_colour,
             horizontal_colour=args.horizontal_colour,
