@@ -34,12 +34,12 @@ def main():
     parser.add_argument("--grid_width", type=int, metavar="", help="Width of grid lines")
     parser.add_argument("--dot_radius", type=int, metavar="", help="Radius of dots (ONLY for scintillating grid)")
     parser.add_argument("--dot_colour", type=int, default="white", metavar="", help="Colour of dots (ONLY for scintillating grid)")
-    parser.add_argument("--square_colour", default="black", metavar="", help="Fill colour of the square")
+    parser.add_argument("--square_colour", default="black", metavar="", help="Square fill colour")
     parser.add_argument("--vertical_colour", metavar="", help="Vertical grid line colour")
     parser.add_argument("--horizontal_colour", metavar="", help="Horizontal grid line colour")
     parser.add_argument("--outline_colour", type =str, default="orange", metavar="", help="Colour outline for square")
-    parser.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of the square outline")
-    parser.add_argument("--save", type=str, default="illusion.png", metavar="", help="Output filename (specify file extension)")
+    parser.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of square outline")
+    parser.add_argument("--save", type=str, default="illusion.png", metavar="", help="Output filename (MUST specify file extension)")
 
     args = parser.parse_args()
 
