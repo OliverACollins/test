@@ -40,7 +40,7 @@ def main():
     elif args.illusion == "scintillating":
         img = draw_scintillating_grid(
             cells=args.cells,
-            side=args.side,
+            size=args.side,
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
