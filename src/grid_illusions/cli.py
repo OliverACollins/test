@@ -7,7 +7,7 @@ ILLUSION_DEFAULTS = {
     "hermann": {
         "cells": 5,
         "size": 400,
-        "grid_zoom": 1.1,
+        "grid_zoom": 1.05,
         "grid_width": 15,
         "blur_strength": 0,
         "vertical_colour": "white",
@@ -35,17 +35,18 @@ ILLUSION_DEFAULTS = {
 }
 
 def main():
-    parser = argparse.ArgumentParser(description="Draw a grid illusion!", add_help = False)
+    parser = argparse.ArgumentParser(description="Draw a grid illusion!", formatter_class=argparse.ArgumentDefaultsHelpFormatter, add_help = False)
+
     parser.add_argument("--help", action="help", help="Help for CLI")
     parser.add_argument("--illusion", type=str, default="hermann", metavar="", help=f"Type of illusion to draw  {{{','.join(ILLUSION_DEFAULTS.keys())}}}")
     parser.add_argument("--cells", type=int, metavar="", help="Number of grid cells")
-    parser.add_argument("--size", type=int, metavar="", help="Size of the square (pixels)")
+    parser.add_argument("--size", type=int, default = 400, metavar="", help="Size of the square (pixels)")
     parser.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
     parser.add_argument("--img_height", type=int, default=600, metavar="", help="Height of canvas")
-    parser.add_argument("--grid_zoom", type=float, metavar="", help="Zoom factor for the grid")
+    parser.add_argument("--grid_zoom", type=float, default = 1.05, metavar="", help="Zoom factor for the grid")
     parser.add_argument("--grid_width", type=int, metavar="", help="Width of grid lines")
     parser.add_argument("--blur_strength", type=int, metavar="", help="Strength of Gaussian blur")
-    parser.add_argument("--dot_radius", type=int, metavar="", help="Radius of dots (ONLY for scintillating grid)")
+    parser.add_argument("--dot_radius", type=int, default = 3, metavar="", help="Radius of dots (ONLY for scintillating grid)")
     parser.add_argument("--dot_colour", type=str, default="white", metavar="", help="Colour of dots (ONLY for scintillating grid)")
     parser.add_argument("--square_colour", default="black", metavar="", help="Square fill colour")
     parser.add_argument("--vertical_colour", metavar="", help="Vertical grid line colour")

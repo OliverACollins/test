@@ -8,15 +8,14 @@ version = "1.0.0"
 authors = [
     {name = "Oliver A Collins", email = "oliver7collins@outlook.com"}
 ]
-description = "test"
+description = "A flexible Python package enabling users to draw the Hermann, scintillating, and Bergen grid illusions."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "Operating System :: Microsoft :: Windows :: Windows 10",
-    "Operating System :: Microsoft :: Windows :: Windows 11",
+    "Operating System :: OS Independent",
 ]
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
