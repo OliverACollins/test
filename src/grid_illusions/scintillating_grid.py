@@ -1,6 +1,6 @@
 from PIL import Image, ImageDraw
 
-def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=4, dot_radius=3, square_colour="black", outline_colour="orange", outline_width=4):
+def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=4, dot_radius=3, square_colour="black", vertical_colour="grey", horizontal_colour="grey", outline_colour="orange", outline_width=4):
     """
     Draw a scintillating grid illusion.
     
@@ -36,12 +36,12 @@ def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1
     # Draw vertical grid lines
     for i in range(1, cells):
         xi = offset_x + i * step
-        draw.line([xi, y, xi, y + side], fill="grey", width=grid_width)
+        draw.line([xi, y, xi, y + side], fill=vertical_colour, width=grid_width)
 
     # Draw horizontal grid lines
     for i in range(1, cells):
         yi = offset_y + i * step
-        draw.line([x, yi, x + side, yi], fill="grey", width=grid_width)
+        draw.line([x, yi, x + side, yi], fill=horizontal_colour, width=grid_width)
 
     # Draw dots at grid line intersections
     for i in range(1, cells):
