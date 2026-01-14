@@ -1,6 +1,6 @@
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
-def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=4, dot_radius=3, dot_colour="white", square_colour="black", vertical_colour="grey", horizontal_colour="grey", outline_colour="orange", outline_width=4):
+def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=4, dot_radius=3, dot_colour="white", square_colour="black", vertical_colour="grey", horizontal_colour="grey", outline_colour="black", outline_width=4, blur_strength=0):
     """
     Draw a scintillating grid illusion.
     
@@ -55,6 +55,10 @@ def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1
 
     # Draw outer square outline
     draw.rectangle([x, y, x + side, y + side], outline=outline_colour, width=outline_width)
+
+    # Apply blur
+    if blur_strength > 0:
+        img = img.filter(ImageFilter.GaussianBlur(blur_strength))
 
     return img
 

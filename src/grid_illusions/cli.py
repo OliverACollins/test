@@ -1,6 +1,7 @@
 import argparse
 from grid_illusions.hermann_grid import draw_hermann_grid
 from grid_illusions.scintillating_grid import draw_scintillating_grid
+from grid_illusions.bergen_grid import draw_bergen_grid
 
 ILLUSION_DEFAULTS = {
     "hermann": {
@@ -8,6 +9,7 @@ ILLUSION_DEFAULTS = {
         "size": 400,
         "grid_zoom": 1.1,
         "grid_width": 15,
+        "blur_strength": 0,
         "vertical_colour": "white",
         "horizontal_colour": "white",
     },
@@ -16,9 +18,19 @@ ILLUSION_DEFAULTS = {
         "size": 400,
         "grid_zoom": 1.05,
         "grid_width": 4,
+        "blur_strength": 0,
         "dot_radius": 3,
         "vertical_colour": "grey",
-        "horizontal_colour": "grey",
+        "horizontal_colour": "grey"
+    },
+    "bergen": {
+        "cells": 10,
+        "size": 400,
+        "grid_zoom": 1.05,
+        "grid_width": 5,
+        "blur_strength": 5,
+        "vertical_colour": "white",
+        "horizontal_colour": "white"
     }
 }
 
@@ -32,12 +44,13 @@ def main():
     parser.add_argument("--img_height", type=int, default=600, metavar="", help="Height of canvas")
     parser.add_argument("--grid_zoom", type=float, metavar="", help="Zoom factor for the grid")
     parser.add_argument("--grid_width", type=int, metavar="", help="Width of grid lines")
+    parser.add_argument("--blur_strength", type=int, metavar="", help="Strength of Gaussian blur")
     parser.add_argument("--dot_radius", type=int, metavar="", help="Radius of dots (ONLY for scintillating grid)")
     parser.add_argument("--dot_colour", type=str, default="white", metavar="", help="Colour of dots (ONLY for scintillating grid)")
     parser.add_argument("--square_colour", default="black", metavar="", help="Square fill colour")
     parser.add_argument("--vertical_colour", metavar="", help="Vertical grid line colour")
     parser.add_argument("--horizontal_colour", metavar="", help="Horizontal grid line colour")
-    parser.add_argument("--outline_colour", type =str, default="orange", metavar="", help="Colour outline for square")
+    parser.add_argument("--outline_colour", type =str, default="black", metavar="", help="Colour outline for square")
     parser.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of square outline")
     parser.add_argument("--save", type=str, default="illusion.png", metavar="", help="Output filename (MUST specify file extension)")
 
@@ -55,6 +68,7 @@ def main():
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
+            blur_strength=args.blur_strength,
             square_colour=args.square_colour,
             vertical_colour=args.vertical_colour,
             horizontal_colour=args.horizontal_colour,
@@ -68,6 +82,24 @@ def main():
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
+            blur_strength=args.blur_strength,
+            dot_radius=args.dot_radius,
+            dot_colour=args.dot_colour,
+            square_colour=args.square_colour,
+            vertical_colour=args.vertical_colour,
+            horizontal_colour=args.horizontal_colour,
+            outline_colour=args.outline_colour,
+            outline_width=args.outline_width
+        )
+
+    elif args.illusion == "bergen":
+        img = draw_bergen_grid(
+            cells=args.cells,
+            side=args.size,
+            img_size=(args.img_width, args.img_height),
+            grid_zoom=args.grid_zoom,
+            grid_width=args.grid_width,
+            blur_strength=args.blur_strength,
             dot_radius=args.dot_radius,
             dot_colour=args.dot_colour,
             square_colour=args.square_colour,
