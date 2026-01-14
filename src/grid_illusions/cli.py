@@ -31,7 +31,7 @@ def main():
     if args.illusion == "hermann":
         img = draw_hermann_grid(
             cells=args.cells,
-            size=args.side,
+            side=args.size,
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width
@@ -40,7 +40,7 @@ def main():
     elif args.illusion == "scintillating":
         img = draw_scintillating_grid(
             cells=args.cells,
-            size=args.side,
+            side=args.size,
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
@@ -50,8 +50,8 @@ def main():
         raise ValueError(f"Unknown illusion type: {args.illusion}")
     
 
-    img.save(args.output)
-    print(f"Saved {args.illusion} illusion to {args.output}")
+    img.save(args.save)
+    print(f"Saved {args.illusion} illusion to {args.save}")
     img.show()
 
 if __name__ == "__main__":
