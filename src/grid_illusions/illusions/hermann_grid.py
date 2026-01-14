@@ -1,6 +1,6 @@
 from PIL import Image, ImageDraw
 
-def draw_grid(cells=4, side=200, img_size=(800, 600), grid_zoom=1.0, grid_width=10):
+def draw_grid(cells=4, side=200, img_size=(800, 600), grid_zoom=1.1, grid_width=10):
     """
     Draw a square with a grid inside.
     
