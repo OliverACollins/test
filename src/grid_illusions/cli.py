@@ -25,16 +25,16 @@ def main():
     parser.add_argument("--illusion", type=str, default="hermann",
                         choices=ILLUSION_DEFAULTS.keys(),
                         help="Type of illusion to draw")
-    parser.add_argument("--cells", type=int, help="Number of grid cells")
-    parser.add_argument("--size", type=int, help="Size of the square (pixels)")
-    parser.add_argument("--img_width", type=int, default=800, help="Width of canvas")
-    parser.add_argument("--img_height", type=int, default=600, help="Height of canvas")
-    parser.add_argument("--grid_zoom", type=float, help="Zoom factor for the grid")
-    parser.add_argument("--grid_width", type=int, help="Width of grid lines")
-    parser.add_argument("--dot_radius", type=int, help="Radius of dots (for scintillating grid)")
-    parser.add_argument("--outline", type =str, default="orange", help="Colour outline for square")
-    parser.add_argument("--outline_width", type=int, default=4, help="Width of the square outline")
-    parser.add_argument("--save", type=str, default="grid.png", help="Output filename")
+    parser.add_argument("--cells", type=int, metavar="", help="Number of grid cells")
+    parser.add_argument("--size", type=int, metavar="", help="Size of the square (pixels)")
+    parser.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
+    parser.add_argument("--img_height", type=int, default=600, metavar="", help="Height of canvas")
+    parser.add_argument("--grid_zoom", type=float, metavar="", help="Zoom factor for the grid")
+    parser.add_argument("--grid_width", type=int, metavar="", help="Width of grid lines")
+    parser.add_argument("--dot_radius", type=int, metavar="", help="Radius of dots (for scintillating grid)")
+    parser.add_argument("--outline", type =str, default="orange", metavar="", help="Colour outline for square")
+    parser.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of the square outline")
+    parser.add_argument("--save", type=str, default="grid.png", metavar="", help="Output filename")
 
     args = parser.parse_args()
 
