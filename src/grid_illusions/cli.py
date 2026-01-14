@@ -5,14 +5,15 @@ from grid_illusions.bergen_grid import draw_bergen_grid
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Draw a grid illusion!", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser = argparse.ArgumentParser(description="Draw a grid illusion!", formatter_class=argparse.ArgumentDefaultsHelpFormatter, add_help=False)
     subparsers = parser.add_subparsers(dest="illusion", required=True)
 
     # ---- Hermann ----
     hermann = subparsers.add_parser(
         "hermann",
         help="Hermann grid illusion",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        add_help=False
     )
     
     hermann.add_argument("--cells", type=int, default=5, metavar="", help="Number of grid cells")
@@ -33,7 +34,8 @@ def main():
     scintillating = subparsers.add_parser(
         "scintillating",
         help="Scintillating grid illusion",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        add_help=False
     )
     
     scintillating.add_argument("--cells", type=int, default=12, metavar="", help="Number of grid cells")
@@ -56,7 +58,8 @@ def main():
     bergen = subparsers.add_parser(
         "bergen",
         help="Bergen grid illusion",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        add_help=False
     )
     
     bergen.add_argument("--cells", type=int, default=10, metavar="", help="Number of grid cells")
