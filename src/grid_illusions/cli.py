@@ -15,7 +15,6 @@ def main():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
     
-    hermann.add_argument("--help", action="help", help="Help for CLI")
     hermann.add_argument("--cells", type=int, metavar="", help="Number of grid cells")
     hermann.add_argument("--size", type=int, default = 400, metavar="", help="Size of the square (pixels)")
     hermann.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
@@ -39,7 +38,6 @@ def main():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
     
-    scintillating.add_argument("--help", action="help", help="Help for CLI")
     scintillating.add_argument("--cells", type=int, metavar="", help="Number of grid cells")
     scintillating.add_argument("--size", type=int, default = 400, metavar="", help="Size of the square (pixels)")
     scintillating.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
@@ -63,7 +61,6 @@ def main():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
     
-    bergen.add_argument("--help", action="help", help="Help for CLI")
     bergen.add_argument("--cells", type=int, metavar="", help="Number of grid cells")
     bergen.add_argument("--size", type=int, default = 400, metavar="", help="Size of the square (pixels)")
     bergen.add_argument("--img_width", type=int, default=800, metavar="", help="Width of canvas")
