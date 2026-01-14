@@ -28,7 +28,7 @@ ILLUSION_DEFAULTS = {
         "size": 400,
         "grid_zoom": 1.05,
         "grid_width": 5,
-        "blur_strength": 5,
+        "blur_strength": 4,
         "vertical_colour": "white",
         "horizontal_colour": "white"
     }
