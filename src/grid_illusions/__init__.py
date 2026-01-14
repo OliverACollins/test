@@ -1,1 +1,1 @@
-from .hermann_grid import draw_grid
+from grid_illusions.hermann_grid import draw_grid
