@@ -1,20 +1,7 @@
 from PIL import Image, ImageDraw, ImageFilter
 
 def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=4, dot_radius=3, dot_colour="white", square_colour="black", vertical_colour="grey", horizontal_colour="grey", outline_colour="black", outline_width=4, blur_strength=0):
-    """
-    Draw a scintillating grid illusion.
-    
-    Parameters:
-        cells (int): Number of grid cells
-        side (int): Size of the square
-        img_size (tuple): Size of the canvas
-        grid_zoom (float): Zoom factor for the grid
-        grid_width (int): Width of grid lines
-        dot_radius (int): Radius of the black dots at intersections
-    
-    Returns:
-        PIL.Image: The generated image
-    """
+
     img = Image.new("RGB", img_size, "white")
     draw = ImageDraw.Draw(img)
 

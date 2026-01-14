@@ -1,2 +1,3 @@
 from grid_illusions.hermann_grid import draw_hermann_grid
 from grid_illusions.scintillating_grid import draw_scintillating_grid
+from grid_illusions.bergen_grid import draw_bergen_grid

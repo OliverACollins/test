@@ -1,19 +1,7 @@
 from PIL import Image, ImageDraw, ImageFilter
 
 def draw_hermann_grid(cells=5, side=400, img_size=(800, 600), grid_zoom=1.1, grid_width=15, square_colour="black", vertical_colour="white", horizontal_colour="white", outline_colour="black", outline_width=4, blur_strength=0):
-    """
-    Draw a square with a grid inside.
 
-    Parameters:
-        cells (int): Number of grid cells (resolution).
-        side (int): Size of the square.
-        img_size (tuple): Size of the canvas (width, height).
-        grid_zoom (float): Zoom factor for the grid.
-        grid_width (int): Width of the grid lines.
-
-    Returns:
-        PIL.Image: The generated image.
-    """
     img = Image.new("RGB", img_size, "white")
     draw = ImageDraw.Draw(img)
 

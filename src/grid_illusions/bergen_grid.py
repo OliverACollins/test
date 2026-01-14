@@ -1,13 +1,7 @@
 from PIL import Image, ImageDraw, ImageFilter
 
-def draw_bergen_grid(cells=10, side=400, img_size=(800, 600), grid_zoom=1.05,
-                      grid_width=5, square_colour="black",
-                      vertical_colour="white", horizontal_colour="white",
-                      outline_colour="orange", outline_width=4,
-                      blur_strength=4):
-    """
-    Draw a square with a grid inside, optionally applying a blur.
-    """
+def draw_bergen_grid(cells=10, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=5, square_colour="black", vertical_colour="white", horizontal_colour="white", outline_colour="orange", outline_width=4, blur_strength=4):
+
     img = Image.new("RGB", img_size, "white")
     draw = ImageDraw.Draw(img)
 
