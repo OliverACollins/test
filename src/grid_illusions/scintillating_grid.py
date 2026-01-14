@@ -56,7 +56,7 @@ def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1
             )
 
     # Draw outer square outline
-    draw.rectangle([x, y, x + side, y + side], outline="pink", width=4)
+    draw.rectangle([x, y, x + side, y + side], outline="orange", width=4)
 
     return img
 

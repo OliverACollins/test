@@ -44,7 +44,7 @@ def draw_hermann_grid(cells=4, side=400, img_size=(800, 600), grid_zoom=1.1, gri
         draw.line([x, yi, x + side, yi], fill="white", width=grid_width)
 
     # Draw outer square outline
-    draw.rectangle([x, y, x + side, y + side], outline="pink", width=4)
+    draw.rectangle([x, y, x + side, y + side], outline="orange", width=4)
 
     return img
 

@@ -6,7 +6,7 @@ from grid_illusions.scintillating_grid import draw_scintillating_grid
 ILLUSION_DEFAULTS = {
     "hermann": {
         "cells": 4,
-        "size": 200,
+        "size": 400,
         "grid_zoom": 1.1,
         "grid_width": 10,
     },
@@ -32,6 +32,7 @@ def main():
     parser.add_argument("--grid_zoom", type=float, help="Zoom factor for the grid")
     parser.add_argument("--grid_width", type=int, help="Width of grid lines")
     parser.add_argument("--dot_radius", type=int, help="Radius of dots (for scintillating grid)")
+    parser.add_argument("--outline", type = str, default = "orange", help = "Colour outline for square")
     parser.add_argument("--save", type=str, default="grid.png", help="Output filename")
 
     args = parser.parse_args()
@@ -49,7 +50,8 @@ def main():
             side=args.size,
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
-            grid_width=args.grid_width
+            grid_width=args.grid_width,
+            outline=args.outline
         )
     elif args.illusion == "scintillating":
         img = draw_scintillating_grid(
@@ -58,7 +60,8 @@ def main():
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
-            dot_radius=args.dot_radius
+            dot_radius=args.dot_radius,
+            outline=args.outline
         )
 
     img.save(args.save)
