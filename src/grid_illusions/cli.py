@@ -4,10 +4,10 @@ from grid_illusions.scintillating_grid import draw_scintillating_grid
 
 ILLUSION_DEFAULTS = {
     "hermann": {
-        "cells": 4,
+        "cells": 5,
         "size": 400,
         "grid_zoom": 1.1,
-        "grid_width": 10,
+        "grid_width": 15,
     },
     "scintillating": {
         "cells": 12,

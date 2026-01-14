@@ -1,6 +1,6 @@
 from PIL import Image, ImageDraw
 
-def draw_hermann_grid(cells=4, side=400, img_size=(800, 600), grid_zoom=1.1, grid_width=10, outline_colour="orange", outline_width=4):
+def draw_hermann_grid(cells=5, side=400, img_size=(800, 600), grid_zoom=1.1, grid_width=15, outline_colour="orange", outline_width=4):
     """
     Draw a square with a grid inside.
 
