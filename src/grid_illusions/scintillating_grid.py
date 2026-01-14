@@ -1,7 +1,6 @@
-# src/grid_illusions/scintillating_grid.py
 from PIL import Image, ImageDraw
 
-def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=4, dot_radius=3, outline="orange", outline_width=4):
+def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=4, dot_radius=3, outline_colour="orange", outline_width=4):
     """
     Draw a scintillating grid illusion.
     
@@ -19,17 +18,17 @@ def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1
     img = Image.new("RGB", img_size, "white")
     draw = ImageDraw.Draw(img)
 
-    # Center the square
+    # Centre the square
     x = (img.size[0] - side) // 2
     y = (img.size[1] - side) // 2
 
     # Fill the square with black
     draw.rectangle([x, y, x + side, y + side], fill="black")
 
-    # Step size for grid lines, scaled by zoom
+    # Scale zoom
     step = (side / cells) * grid_zoom
 
-    # Offset to center the grid
+    # Centre the grid
     total_grid_size = step * cells
     offset_x = x + (side - total_grid_size) / 2
     offset_y = y + (side - total_grid_size) / 2
@@ -44,24 +43,22 @@ def draw_scintillating_grid(cells=12, side=400, img_size=(800, 600), grid_zoom=1
         yi = offset_y + i * step
         draw.line([x, yi, x + side, yi], fill="grey", width=grid_width)
 
-    # Draw black dots at intersections
+    # Draw dots at grid line intersections
     for i in range(1, cells):
         for j in range(1, cells):
             xi = offset_x + i * step
             yi = offset_y + j * step
-            # Draw a circle centered at intersection
             draw.ellipse(
                 [xi - dot_radius, yi - dot_radius, xi + dot_radius, yi + dot_radius],
                 fill="white"
             )
 
     # Draw outer square outline
-    draw.rectangle([x, y, x + side, y + side], outline=outline, width=outline_width)
+    draw.rectangle([x, y, x + side, y + side], outline=outline_colour, width=outline_width)
 
     return img
 
-
-# Example usage
-if __name__ == "__main__":
-    img = draw_scintillating_grid()
-    img.show()
+# Testing
+#if __name__ == "__main__":
+    #img = draw_scintillating_grid()
+    #img.show()

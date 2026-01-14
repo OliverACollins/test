@@ -1,7 +1,6 @@
-# src/grid_illusions/hermann_grid.py
 from PIL import Image, ImageDraw
 
-def draw_hermann_grid(cells=4, side=400, img_size=(800, 600), grid_zoom=1.1, grid_width=10, outline="orange", outline_width=4):
+def draw_hermann_grid(cells=4, side=400, img_size=(800, 600), grid_zoom=1.1, grid_width=10, outline_colour="orange", outline_width=4):
     """
     Draw a square with a grid inside.
 
@@ -18,17 +17,17 @@ def draw_hermann_grid(cells=4, side=400, img_size=(800, 600), grid_zoom=1.1, gri
     img = Image.new("RGB", img_size, "white")
     draw = ImageDraw.Draw(img)
 
-    # Center the square
+    # Centre the square
     x = (img.size[0] - side) // 2
     y = (img.size[1] - side) // 2
 
     # Draw outer square
     draw.rectangle([x, y, x + side, y + side], width=2, fill="black")
 
-    # Step size for grid lines, scaled by zoom
+    # Scale zoom
     step = (side / cells) * grid_zoom
 
-    # Offset to center the grid
+    # Centre the grid
     total_grid_size = step * cells
     offset_x = x + (side - total_grid_size) / 2
     offset_y = y + (side - total_grid_size) / 2
@@ -44,11 +43,11 @@ def draw_hermann_grid(cells=4, side=400, img_size=(800, 600), grid_zoom=1.1, gri
         draw.line([x, yi, x + side, yi], fill="white", width=grid_width)
 
     # Draw outer square outline
-    draw.rectangle([x, y, x + side, y + side], outline=outline, width=outline_width)
+    draw.rectangle([x, y, x + side, y + side], outline=outline_colour, width=outline_width)
 
     return img
 
-# Example usage
-if __name__ == "__main__":
-    img = draw_hermann_grid()
-    img.show()
+# Testing
+#if __name__ == "__main__":
+    #img = draw_hermann_grid()
+    #img.show()

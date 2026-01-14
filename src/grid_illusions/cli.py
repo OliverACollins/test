@@ -2,7 +2,6 @@ import argparse
 from grid_illusions.hermann_grid import draw_hermann_grid
 from grid_illusions.scintillating_grid import draw_scintillating_grid
 
-# Per-illusion default settings
 ILLUSION_DEFAULTS = {
     "hermann": {
         "cells": 4,
@@ -30,19 +29,17 @@ def main():
     parser.add_argument("--grid_zoom", type=float, metavar="", help="Zoom factor for the grid")
     parser.add_argument("--grid_width", type=int, metavar="", help="Width of grid lines")
     parser.add_argument("--dot_radius", type=int, metavar="", help="Radius of dots (for scintillating grid)")
-    parser.add_argument("--outline", type =str, default="orange", metavar="", help="Colour outline for square")
+    parser.add_argument("--outline_colour", type =str, default="orange", metavar="", help="Colour outline for square")
     parser.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of the square outline")
-    parser.add_argument("--save", type=str, default="grid.png", metavar="", help="Output filename")
+    parser.add_argument("--save", type=str, default="illusion.png", metavar="", help="Output filename")
 
     args = parser.parse_args()
 
-    # Apply per-illusion defaults for any argument that was not provided
     defaults = ILLUSION_DEFAULTS[args.illusion]
     for key, value in defaults.items():
         if getattr(args, key) is None:
             setattr(args, key, value)
 
-    # Dispatch
     if args.illusion == "hermann":
         img = draw_hermann_grid(
             cells=args.cells,
@@ -50,7 +47,7 @@ def main():
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
-            outline=args.outline,
+            outline_colour=args.outline,
             outline_width=args.outline_width
         )
     elif args.illusion == "scintillating":
@@ -61,7 +58,7 @@ def main():
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
             dot_radius=args.dot_radius,
-            outline=args.outline,
+            outline_colour=args.outline,
             outline_width=args.outline_width
         )
 
