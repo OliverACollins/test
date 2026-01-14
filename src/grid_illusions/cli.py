@@ -33,7 +33,7 @@ def main():
     parser.add_argument("--grid_zoom", type=float, metavar="", help="Zoom factor for the grid")
     parser.add_argument("--grid_width", type=int, metavar="", help="Width of grid lines")
     parser.add_argument("--dot_radius", type=int, metavar="", help="Radius of dots (ONLY for scintillating grid)")
-    parser.add_argument("--dot_colour", type=int, default="white", metavar="", help="Colour of dots (ONLY for scintillating grid)")
+    parser.add_argument("--dot_colour", type=str, default="white", metavar="", help="Colour of dots (ONLY for scintillating grid)")
     parser.add_argument("--square_colour", default="black", metavar="", help="Square fill colour")
     parser.add_argument("--vertical_colour", metavar="", help="Vertical grid line colour")
     parser.add_argument("--horizontal_colour", metavar="", help="Horizontal grid line colour")
