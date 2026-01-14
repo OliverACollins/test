@@ -32,7 +32,8 @@ def main():
     parser.add_argument("--grid_zoom", type=float, help="Zoom factor for the grid")
     parser.add_argument("--grid_width", type=int, help="Width of grid lines")
     parser.add_argument("--dot_radius", type=int, help="Radius of dots (for scintillating grid)")
-    parser.add_argument("--outline", type = str, default = "orange", help = "Colour outline for square")
+    parser.add_argument("--outline", type =str, default="orange", help="Colour outline for square")
+    parser.add_argument("--outline_width", type=int, default=4, help="Width of the square outline")
     parser.add_argument("--save", type=str, default="grid.png", help="Output filename")
 
     args = parser.parse_args()
@@ -51,7 +52,8 @@ def main():
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
-            outline=args.outline
+            outline=args.outline,
+            outline_width=args.outline_width
         )
     elif args.illusion == "scintillating":
         img = draw_scintillating_grid(
@@ -61,7 +63,8 @@ def main():
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
             dot_radius=args.dot_radius,
-            outline=args.outline
+            outline=args.outline,
+            outline_width=args.outline_width
         )
 
     img.save(args.save)
