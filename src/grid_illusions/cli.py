@@ -20,9 +20,8 @@ ILLUSION_DEFAULTS = {
 }
 
 def main():
-    parser = argparse.ArgumentParser(description="Draw a grid or illusion image",
-                                     add_help = False)
-
+    parser = argparse.ArgumentParser(description="Draw a grid or illusion image", add_help = False)
+    parser.add_argument("--help", action="help", help="Help for CLI")
     parser.add_argument("--illusion", type=str, default="hermann",
                         choices=ILLUSION_DEFAULTS.keys(),
                         help="Type of illusion to draw")
