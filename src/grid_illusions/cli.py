@@ -34,8 +34,14 @@ ILLUSION_DEFAULTS = {
     }
 }
 
+class NoNoneDefaultsFormatter(argparse.ArgumentDefaultsHelpFormatter):
+    def _get_help_string(self, action):
+        if action.default is None:
+            return action.help
+        return super()._get_help_string(action)
+
 def main():
-    parser = argparse.ArgumentParser(description="Draw a grid illusion!", formatter_class=argparse.ArgumentDefaultsHelpFormatter, add_help = False)
+    parser = argparse.ArgumentParser(description="Draw a grid illusion!", formatter_class=NoNoneDefaultsFormatter, add_help = False)
 
     parser.add_argument("--help", action="help", help="Help for CLI")
     parser.add_argument("--illusion", type=str, default="hermann", metavar="", help=f"Type of illusion to draw  {{{','.join(ILLUSION_DEFAULTS.keys())}}}")
