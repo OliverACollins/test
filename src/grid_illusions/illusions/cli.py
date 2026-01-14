@@ -1,5 +1,5 @@
 import argparse
-from .hermann_grid import draw_grid as draw_hermann_grid
+from grid_illusions.hermann_grid import draw_grid as draw_hermann_grid
 # from .rodframe import draw_rod_frame  # example if you have other illusions
 
 def main():
