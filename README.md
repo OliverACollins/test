@@ -24,7 +24,7 @@ Created in the 1990s<sup>2</sup>, this illusion
 TEXT HERE
 
 <figure>
- <img src = "src/media/bergen.png" alt = "Default Bergen grid illusion" size = 75%/>
+ <img src = "src/media/bergen.png" alt = "Default Bergen grid illusion" width = 300/>
 </figure>
 
 
