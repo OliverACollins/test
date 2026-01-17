@@ -73,12 +73,26 @@ Parameters can be specified in the following manner:
 grid-illusions hermann --size 300 --grid_width 8 --vertical_colour blue --horizontal_colour blue
 ```
 
-
 ## Usage: Python script
+As well as using the CLI to generate grid illusions, users can also achieve this within their Python script, which is likely more handy when creating psychological paradigms. For example:
+
+```python
+from grid_illusions.hermann_grid import draw_hermann_grid
+
+img = draw_hermann_grid(
+    cells=6,
+    side=500,
+    grid_width=18,
+)
+
+img.show()
+img.save("hermann_demo.png")
+```
+
 
 *If any issues occur with this Python package, please open an [Issue](https://github.com/OliverACollins/Grid-Illusions/issues) so that any problems highlighted can be addressed. Thank you!*
 
 ## References
-[^1] Hermann, L. (1870). Eine Erscheinung simultanen Contrastes. Pflüger, Archiv für die Gesammte Physiologie des Menschen und der Thiere, 3(1), 13–15. https://doi.org/10.1007/BF01855743
+[^1]: Hermann, L. (1870). Eine Erscheinung simultanen Contrastes. Pflüger, Archiv für die Gesammte Physiologie des Menschen und der Thiere, 3(1), 13–15. https://doi.org/10.1007/BF01855743
 
 [^2]: Schrauf M, Lingelbach B, Lingelbach E & Wist ER (1995) The Hermann grid and the scintillation effect. Perception 24: suppl, 88–89
