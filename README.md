@@ -81,7 +81,5 @@ grid-illusions hermann --size 300 --grid_width 8 --vertical_colour blue --horizo
 [^1]: Hermann, L. (1870). Eine Erscheinung simultanen Contrastes. Pflüger, Archiv für die Gesammte Physiologie des Menschen und der Thiere, 3(1), 13–15. https://doi.org/10.1007/BF01855743
 
 [^2]: Schrauf M, Lingelbach B, Lingelbach E & Wist ER (1995) The Hermann grid and the scintillation effect. Perception 24: suppl, 88–89
-<br>
-<sup>3</sup>
 
 *If any issues occur with this Python package, please open an [Issue](https://github.com/OliverACollins/Grid-Illusions/issues) so that any problems highlighted can be addressed. Thank you!*
