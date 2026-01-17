@@ -17,14 +17,14 @@ First described in 1870<sup>1</sup>, the Hermann grid illusion is prototypically
 Created in the 1990s<sup>2</sup>, this illusion 
 
 <figure>
- <img src = "src/media/scintillating.png" alt = "Default scintillating grid illusion" width = 75%/>
+ <img src = "src/media/scintillating.png" alt = "Default scintillating grid illusion" width = 75% align-items: center;/>
 </figure>
 
 ## Bergen grid illusion
 TEXT HERE
 
 <figure>
- <img src = "src/media/bergen.png" alt = "Default Bergen grid illusion" width = 300/>
+ <img src = "src/media/bergen.png" alt = "Default Bergen grid illusion" width = 75%/>
 </figure>
 
 
