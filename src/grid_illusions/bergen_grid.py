@@ -40,6 +40,6 @@ def draw_bergen_grid(cells=10, side=400, img_size=(800, 600), grid_zoom=1.05, gr
     return img
 
 # Testing
-#if __name__ == "__main__":
+# if __name__ == "__main__":
     #img = draw_bergen_grid()
     #img.show()
