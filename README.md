@@ -6,7 +6,7 @@ The purpose of creating this Python package was to provide an easy-to-use tool f
 
 ## Illusions included in this package
 ### Hermann grid illusion
-First described in 1870 [^1], the Hermann grid illusion is prototypically created when looking at a white grid on top of a black background. The optical illusion experienced consists of deceptively seeing relatively faint dark patches appearing at the intersections of the grid lines.
+First described in 1870[^1], the Hermann grid illusion is prototypically created when looking at a white grid on top of a black background. The optical illusion experienced consists of deceptively seeing relatively faint dark patches appearing at the intersections of the grid lines.
 
 <figure>
  <img src = "src/media/hermann.png" alt = "Default Hermann grid illusion"/>
@@ -14,7 +14,7 @@ First described in 1870 [^1], the Hermann grid illusion is prototypically create
 
 
 ## Scintillating grid illusion
-Created in the 1990s<sup>2</sup>, this illusion 
+Created in the 1990s[^2], this illusion 
 
 <figure>
  <img src = "src/media/scintillating.png" alt = "Default scintillating grid illusion"/>
@@ -79,8 +79,8 @@ grid-illusions hermann --size 300 --grid_width 8 --vertical_colour blue --horizo
 
 ## References
 [^1]: Hermann, L. (1870). Eine Erscheinung simultanen Contrastes. Pflüger, Archiv für die Gesammte Physiologie des Menschen und der Thiere, 3(1), 13–15. https://doi.org/10.1007/BF01855743
-<br>
-<sup>2</sup> Schrauf M, Lingelbach B, Lingelbach E & Wist ER (1995) The Hermann grid and the scintillation effect. Perception 24: suppl, 88–89
+
+[^2]: Schrauf M, Lingelbach B, Lingelbach E & Wist ER (1995) The Hermann grid and the scintillation effect. Perception 24: suppl, 88–89
 <br>
 <sup>3</sup>
 
