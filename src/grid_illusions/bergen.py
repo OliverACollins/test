@@ -1,8 +1,20 @@
 from PIL import Image, ImageDraw, ImageFilter
 
-def draw_bergen_grid(cells=10, side=400, img_size=(800, 600), grid_zoom=1.05, grid_width=5, square_colour="black", vertical_colour="white", horizontal_colour="white", outline_colour="orange", outline_width=4, blur_strength=4):
+def draw_bergen(
+    cells=10, 
+    side=400, 
+    img_size=(800, 600), 
+    grid_zoom=1.05, 
+    grid_width=5, 
+    square_colour="black",
+    canvas_colour="white", 
+    vertical_colour="white", 
+    horizontal_colour="white", 
+    outline_colour="black", 
+    outline_width=4, 
+    blur_strength=4):
 
-    img = Image.new("RGB", img_size, "white")
+    img = Image.new("RGB", img_size, canvas_colour)
     draw = ImageDraw.Draw(img)
 
     # Centre the square
@@ -40,6 +52,6 @@ def draw_bergen_grid(cells=10, side=400, img_size=(800, 600), grid_zoom=1.05, gr
     return img
 
 # Testing
-# if __name__ == "__main__":
-    #img = draw_bergen_grid()
-    #img.show()
+if __name__ == "__main__":
+    img = draw_bergen()
+    img.show()

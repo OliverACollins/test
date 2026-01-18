@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grid-Illusions Demonstration</title>
+
+    <!-- jsPsych -->
+    <script src="https://unpkg.com/jspsych@8.2.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-fullscreen@2.0.0"></script>
+
+    <link href="https://unpkg.com/jspsych@8.2.2/css/jspsych.css" rel="stylesheet" />
+
+    <style>
+    </style>
+
+</head>
+
+<body></body>
+
+<script>
+
+// initialise jsPsych + create timeline
+const jsPsych = initJsPsych({
+    override_safe_mode: true,
+});
+
+const timeline = [];
+
+
+// welcome message
+const welcome = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: "<h3><b>Grid-Illusions Demonstration</b></h3> <p>Press any key to begin</p>",
+    choices: [" "]
+};
+
+
+// fullscreen on
+const fullscreen_on = {
+    type: jsPsychFullscreen,
+    fullscreen_mode: true,
+    message: "<p>Press the button to enter fullscreen</p>",
+    button_label: "Continue"
+};
+
+
+// instructions
+const instructions = {
+    type: jsPsychHtmlButtonResponse,
+    choices: ["Begin"],
+
+    stimulus: `In the following task, you will be shown a selection of grids. You must
+
+    <figure>
+        <img src="src\media\hermann.png" alt = "Hermann grid illusion" />
+    </figure>
+`
+
+}
+
+// example trial
+
+
+
+// run the experiment
+jsPsych.run(timeline);
+
+</script>
+</html>
