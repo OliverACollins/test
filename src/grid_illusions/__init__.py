@@ -2,4 +2,4 @@ from grid_illusions.hermann import draw_hermann
 from grid_illusions.scintillating import draw_scintillating
 from grid_illusions.bergen import draw_bergen
 from grid_illusions.ninio import draw_ninio
-from grid_illusions.mcanany_levine import mcanany_levine
+from grid_illusions.mcanany_levine import draw_mcanany_levine
