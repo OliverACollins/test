@@ -120,7 +120,7 @@ def main():
 
     # McAnany-Levine extinction grid
     mcanany_levine = subparsers.add_parser(
-        "mcanany_levine",
+        "mcanany-levine",
         help="McAnany-Levine extinction illusion",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
         add_help=False
@@ -216,7 +216,7 @@ def main():
             outline_width=args.outline_width,
         )
 
-    elif args.illusion == "mcanany_levine":
+    elif args.illusion == "mcanany-levine":
         img = draw_mcanany_levine(
             cells=args.cells,
             side=args.size,
