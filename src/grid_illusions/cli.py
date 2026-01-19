@@ -108,7 +108,7 @@ def main():
     ninio.add_argument("--blur_strength", type=int, default=0, metavar="", help="Strength of Gaussian blur")
     ninio.add_argument("--dot_radius", type=int, default=3, metavar="", help="Radius of dots")
     ninio.add_argument("--dot_colour", type=str, default="black", metavar="", help="Colour of dots")
-    ninio.add_argument("--dot_outline_colour", type=str, default="white", metavar="", help="Colour of dot outline")
+    ninio.add_argument("--dot_outline", type=str, default="white", metavar="", help="Colour of dot outline")
     ninio.add_argument("--square_colour", type=str, default="black", metavar="", help="Square fill colour")
     ninio.add_argument("--canvas_colour", type=str, default="white", metavar="", help="Canvas (background) colour")
     ninio.add_argument("--vertical_colour", type=str, default="grey", metavar="", help="Vertical grid line colour")
