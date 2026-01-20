@@ -89,8 +89,8 @@ def draw_scintillating(
     x = (big_size[0] - side) // 2
     y = (big_size[1] - side) // 2
 
-    # Fill the square with black
-    draw.rectangle([x, y, x + side, y + side], fill=square_colour)
+    # Draw square background
+    grid_draw.rectangle([x, y, x + side, y + side], fill=square_colour)
 
     # Scale zoom
     step = (side / cells) * grid_zoom
@@ -182,6 +182,7 @@ def draw_scintillating(
                 fill=dot_colour,
             )
 
+    # Fill the square
     mask = Image.new("L", big_size, 0)
     mask_draw = ImageDraw.Draw(mask)
 
@@ -190,18 +191,21 @@ def draw_scintillating(
         fill=255
     )
 
-    img_big = Image.composite(
-    grid_layer,
-    img_big,
-    mask
-)
+    # Clip the grid to the square
+    grid_layer.putalpha(mask)
+
+    # Alpha-composite grid over square
+    img_big = Image.alpha_composite(
+        img_big.convert("RGBA"),
+        grid_layer
+    ).convert("RGB")
 
     # Draw outer square outline
     final_draw = ImageDraw.Draw(img_big)
     final_draw.rectangle(
         [x, y, x + side, y + side],
         outline=outline_colour,
-        width=outline_width
+        width=outline_width,
     )
 
     # Apply blur

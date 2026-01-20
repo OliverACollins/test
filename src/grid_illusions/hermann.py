@@ -37,9 +37,9 @@ def draw_distorted_line(
 def draw_hermann(
     cells=5,
     side=600,
-    img_size=(1000, 800),
+    img_size=(600, 600),
     grid_zoom=1.1,
-    grid_width=15,
+    grid_width=20,
     wiggle_strength=0,
     wiggle_frequency=0,
     blur_strength=0,
@@ -71,8 +71,8 @@ def draw_hermann(
     x = (big_size[0] - side) // 2
     y = (big_size[1] - side) // 2
 
-    # Fill the square with black
-    draw.rectangle([x, y, x + side, y + side], fill=square_colour)
+    # Draw square background
+    grid_draw.rectangle([x, y, x + side, y + side], fill=square_colour)
 
     # Scale zoom
     step = (side / cells) * grid_zoom
@@ -124,6 +124,7 @@ def draw_hermann(
                 frequency=wiggle_frequency,
             )
 
+    # Fill the square
     mask = Image.new("L", big_size, 0)
     mask_draw = ImageDraw.Draw(mask)
 
@@ -132,18 +133,21 @@ def draw_hermann(
         fill=255
     )
 
-    img_big = Image.composite(
-    grid_layer,
-    img_big,
-    mask
-)
+    # Clip the grid to the square
+    grid_layer.putalpha(mask)
+
+    # Alpha-composite grid over square
+    img_big = Image.alpha_composite(
+        img_big.convert("RGBA"),
+        grid_layer
+    ).convert("RGB")
 
     # Draw outer square outline
     final_draw = ImageDraw.Draw(img_big)
     final_draw.rectangle(
         [x, y, x + side, y + side],
         outline=outline_colour,
-        width=outline_width
+        width=outline_width,
     )
 
     # Apply blur
