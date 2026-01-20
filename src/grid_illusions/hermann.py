@@ -37,7 +37,7 @@ def draw_distorted_line(
 def draw_hermann(
     cells=5,
     side=600,
-    img_size=(600, 600),
+    img_size=(1000, 800),
     grid_zoom=1.1,
     grid_width=20,
     wiggle_strength=0,

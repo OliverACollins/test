@@ -11,7 +11,7 @@ The purpose of creating this Python package was to provide an easy-to-use tool f
 First described by Brewster in 1844[^1], although generally attributed to Hermann (1870)[^2], the Hermann grid illusion is prototypically created when looking at a white grid on top of a black background. The optical illusion experienced consists of deceptively seeing relatively faint dark patches appearing at the intersections of the grid lines.
 
 <figure>
- <img src = "src/media/hermann.png" alt = "Default Hermann grid illusion"/>
+ <img src = "src/media/hermann_examples.png" alt = "Default and reverse contrast Hermann grid illusions"/>
 </figure>
 
 + INCLUDE REVERSE CONTRAST HERMANN
