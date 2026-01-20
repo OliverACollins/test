@@ -31,6 +31,8 @@ def main():
     hermann.add_argument("--img_height", type=int, default=600, metavar="", help="Height of canvas (pixels)")
     hermann.add_argument("--grid_zoom", type=float, default =1.1, metavar="", help="Zoom factor for grid")
     hermann.add_argument("--grid_width", type=int, default=15, metavar="", help="Width of grid lines")
+    hermann.add_argument("--wiggle_strength", type=int, default=0, metavar="", help="")
+    hermann.add_argument("--wiggle_frequency", type=int, default=0, metavar="", help="")
     hermann.add_argument("--blur_strength", type=int, default=0, metavar="", help="Strength of Gaussian blur")
     hermann.add_argument("--square_colour", type=str, default="black", metavar="", help="Square fill colour")
     hermann.add_argument("--canvas_colour", type=str, default="white", metavar="", help="Canvas (background) colour")
@@ -55,6 +57,8 @@ def main():
     scintillating.add_argument("--img_height", type=int, default=600, metavar="", help="Height of canvas (pixels)")
     scintillating.add_argument("--grid_zoom", type=float, default=1.05, metavar="", help="Zoom factor for grid")
     scintillating.add_argument("--grid_width", type=int, default=4, metavar="", help="Width of grid lines")
+    scintillating.add_argument("--wiggle_strength", type=int, default=0, metavar="", help="Amplitude of distortion applied to grid lines")
+    scintillating.add_argument("--wiggle_frequency", type=int, default=0, metavar="", help="Number of waves in distorted grid lines")
     scintillating.add_argument("--blur_strength", type=int, default=0, metavar="", help="Strength of Gaussian blur")
     scintillating.add_argument("--dot_radius", type=int, default=3, metavar="", help="Radius of dots")
     scintillating.add_argument("--dot_colour", type=str, default="white", metavar="", help="Colour of dots")
@@ -153,6 +157,8 @@ def main():
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
+            wiggle_strength=args.wiggle_strength,
+            wiggle_frequency=args.wiggle_frequency,
             blur_strength=args.blur_strength,
             square_colour=args.square_colour,
             canvas_colour=args.canvas_colour,
@@ -169,6 +175,8 @@ def main():
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
+            wiggle_strength=args.wiggle_strength,
+            wiggle_frequency=args.wiggle_frequency,
             blur_strength=args.blur_strength,
             dot_radius=args.dot_radius,
             dot_colour=args.dot_colour,

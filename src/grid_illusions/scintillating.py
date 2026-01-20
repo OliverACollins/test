@@ -1,12 +1,63 @@
 from PIL import Image, ImageDraw, ImageFilter
+import math
+
+def distort_point(
+    x, y,
+    t,
+    orientation,
+    strength,
+    frequency,
+):
+    offset = strength * math.sin(2 * math.pi * frequency * t)
+
+    if orientation == "vertical":
+        return x + offset, y
+    else:
+        return x, y + offset
+
+def draw_distorted_line(
+    draw,
+    start,
+    end,
+    width,
+    fill,
+    strength=2,
+    frequency=2,
+    samples=800,
+):
+    r = width / 2
+
+    x1, y1 = start
+    x2, y2 = end
+
+    for i in range(samples + 1):
+        t = i / samples
+        x = x1 + (x2 - x1) * t
+        y = y1 + (y2 - y1) * t
+
+        offset = strength * math.sin(2 * math.pi * frequency * t)
+
+        if abs(x2 - x1) < abs(y2 - y1):  # vertical distorted grid line
+            x += offset
+        else:                            # horizontal distorted grid line
+            y += offset
+
+        draw.ellipse(
+            (x - r, y - r, x + r, y + r),
+            fill=fill,
+            outline=None
+        )
 
 def draw_scintillating(
     cells=12,
-    side=400,
-    img_size=(800, 600),
+    side=600,
+    img_size=(1000, 800),
     grid_zoom=1.05,
-    grid_width=4,
-    dot_radius=3,
+    grid_width=6,
+    wiggle_strength=0,
+    wiggle_frequency=0,
+    blur_strength=0,
+    dot_radius=5,
     dot_colour="white",
     square_colour="black",
     canvas_colour="white",
@@ -14,26 +65,29 @@ def draw_scintillating(
     horizontal_colour="grey",
     outline_colour="black",
     outline_width=4,
-    blur_strength=0,
 ):
 
     # Anti-aliasing
-    aa_scale = 4
-    aa = aa_scale
-    hi_size = (img_size[0] * aa, img_size[1] * aa)
+    supersample = 4
+    SCALE = supersample
+    big_size = (img_size[0] * SCALE, img_size[1] * SCALE)
 
-    # Scale spatial parameters
-    side *= aa
-    grid_width *= aa
-    dot_radius *= aa
-    outline_width *= aa
+    img_big = Image.new("RGB", big_size, canvas_colour)
+    draw = ImageDraw.Draw(img_big)
 
-    img = Image.new("RGB", hi_size, canvas_colour)
-    draw = ImageDraw.Draw(img)
+    grid_layer = Image.new("RGBA", big_size, (0, 0, 0, 0))
+    grid_draw = ImageDraw.Draw(grid_layer)
+
+    side *= SCALE
+    grid_width *= SCALE
+    dot_radius *= SCALE
+    outline_width *= SCALE
+    raw_wiggle = wiggle_strength
+    wiggle_strength *= SCALE
 
     # Centre the square
-    x = (img.size[0] - side) // 2
-    y = (img.size[1] - side) // 2
+    x = (big_size[0] - side) // 2
+    y = (big_size[1] - side) // 2
 
     # Fill the square with black
     draw.rectangle([x, y, x + side, y + side], fill=square_colour)
@@ -42,45 +96,109 @@ def draw_scintillating(
     step = (side / cells) * grid_zoom
 
     # Centre the grid
-    total_grid_size = step * cells
-    offset_x = x + (side - total_grid_size) / 2
-    offset_y = y + (side - total_grid_size) / 2
+    total = step * cells
+    offset_x = x + (side - total) / 2
+    offset_y = y + (side - total) / 2
 
     # Draw vertical grid lines
     for i in range(1, cells):
         xi = offset_x + i * step
-        draw.line(
-            [xi, y, xi, y + side],
-            fill=vertical_colour,
-            width=grid_width
-        )
+
+        if raw_wiggle == 0:
+            grid_draw.line(
+                [xi, y, xi, y + side],
+                fill=vertical_colour,
+                width=grid_width
+            )
+        else:
+            draw_distorted_line(
+                grid_draw,
+                (xi, y),
+                (xi, y + side),
+                width=grid_width,
+                fill=vertical_colour,
+                strength=wiggle_strength,
+                frequency=wiggle_frequency,
+            )
 
     # Draw horizontal grid lines
     for i in range(1, cells):
         yi = offset_y + i * step
-        draw.line(
-            [x, yi, x + side, yi],
-            fill=horizontal_colour,
-            width=grid_width
-        )
 
-    # Draw dots at grid line intersections
-    for i in range(1, cells):
-        for j in range(1, cells):
-            xi = offset_x + i * step
-            yi = offset_y + j * step
-            draw.ellipse(
-                [
-                    xi - dot_radius,
-                    yi - dot_radius,
-                    xi + dot_radius,
-                    yi + dot_radius
-                ],
-                fill=dot_colour
+        if raw_wiggle == 0:
+            grid_draw.line(
+                [x, yi, x + side, yi],
+                fill=horizontal_colour,
+                width=grid_width
+            )
+        else:
+            draw_distorted_line(
+                grid_draw,
+                (x, yi),
+                (x + side, yi),
+                width=grid_width,
+                fill=horizontal_colour,
+                strength=wiggle_strength,
+                frequency=wiggle_frequency,
             )
 
+    for i in range(1, cells):
+        for j in range(1, cells):
+            xi0 = offset_x + i * step
+            yi0 = offset_y + j * step
+
+            xd, yd = xi0, yi0
+
+            for _ in range(3):  # 2–3 iterations is enough
+                # Parametric positions along the lines
+                ty = (yd - y) / side   # vertical line parameter
+                tx = (xd - x) / side   # horizontal line parameter
+
+                # Vertical line distortion (x depends on y)
+                xd, _ = distort_point(
+                    xi0, yd,
+                    t=ty,
+                    orientation="vertical",
+                    strength=wiggle_strength,
+                    frequency=wiggle_frequency,
+                )
+
+                # Horizontal line distortion (y depends on x)
+                _, yd = distort_point(
+                    xd, yi0,
+                    t=tx,
+                    orientation="horizontal",
+                    strength=wiggle_strength,
+                    frequency=wiggle_frequency,
+                )
+
+            grid_draw.ellipse(
+                (
+                    xd - dot_radius,
+                    yd - dot_radius,
+                    xd + dot_radius,
+                    yd + dot_radius,
+                ),
+                fill=dot_colour,
+            )
+
+    mask = Image.new("L", big_size, 0)
+    mask_draw = ImageDraw.Draw(mask)
+
+    mask_draw.rectangle(
+        [x, y, x + side, y + side],
+        fill=255
+    )
+
+    img_big = Image.composite(
+    grid_layer,
+    img_big,
+    mask
+)
+
     # Draw outer square outline
-    draw.rectangle(
+    final_draw = ImageDraw.Draw(img_big)
+    final_draw.rectangle(
         [x, y, x + side, y + side],
         outline=outline_colour,
         width=outline_width
@@ -88,11 +206,12 @@ def draw_scintillating(
 
     # Apply blur
     if blur_strength > 0:
-        img = img.filter(ImageFilter.GaussianBlur(blur_strength * aa))
+        img_big = img_big.filter(
+            ImageFilter.GaussianBlur(blur_strength * SCALE)
+        )
 
     # Downsample for anti-aliasing
-    img = img.resize(img_size, Image.LANCZOS)
-
+    img = img_big.resize(img_size, Image.LANCZOS)
     return img
 
 # Testing

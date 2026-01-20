@@ -59,9 +59,11 @@ There are a number of parameters that can be set for each grid illusion, such as
 - `size`: determines the size of the grid illusion (in pixels)
 - `grid_zoom`: applies a zoom function to the grid to ensure a more natural grid appearance
 - `grid_width`: specifies the width of the grid lines (both vertical and horizontal dimensions)
-- `blur_strength`: mostly relevant to the Bergen illusion, this controls the Gaussian blur on the image (set to 0 by default for the Hermann and scintillating illusions)
 - `vertical_colour`: change the colour of the vertical grid lines. Here, as with any of the colour arguments, you can use [HTML colour names](https://www.w3schools.com/tags/ref_colornames.asp) or [HEX codes](https://www.color-hex.com/), ensuring that such HEX codes are inputted as a string
 - `horizontal_colour`: change the colour of the vertical grid lines
+- `wiggle_strength`: the amplitude of the distortion applied to the grid lines
+- `wiggle_frequency`: the number of waves in the grid lines when distorted
+- `blur_strength`: mostly relevant to the Bergen illusion, this controls the Gaussian blur on the image (set to 0 by default for the Hermann and scintillating illusions)
 - `save`: allows one to change the filename (and file path) for the illusion image. It is crucial to specify the file extension (e.g., .png, .jpg, .tiff, .pdf)
 
 Key parameters for adjusting illusion strength include:
