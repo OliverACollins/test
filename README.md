@@ -6,7 +6,7 @@ The purpose of creating this Python package was to provide an easy-to-use tool f
 
 [Try out this demonstration of a simple implementation using this package](LINK HERE)
 
-## Illusions included in this package*
+## Illusions included in this package[^*]
 ### Hermann grid illusion
 First described by Brewster in 1844[^1], although generally attributed to Hermann (1870)[^2], the Hermann grid illusion is prototypically created when looking at a white grid on top of a black background. The optical illusion experienced consists of deceptively seeing relatively faint dark patches appearing at the intersections of the grid lines.
 
@@ -47,7 +47,7 @@ Creating a particularly powerful effect, the McAnany-Levine extinction illusion
 
 For this illusion to work as intended, it is recommended that 
 
-*many of the illusions shown in the images above may not produce an illusory effect due to their relatively small display size
+[^*]: Many of the illusions shown in the images above may not produce an illusory effect due to their relatively small display size
 
 ## Installation
 Install directly from this GitHub repository in Python terminal:
