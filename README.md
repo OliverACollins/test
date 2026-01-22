@@ -47,7 +47,7 @@ Creating a particularly powerful effect, the McAnany-Levine extinction illusion
 
 For this illusion to work as intended, it is recommended that 
 
-* many of the illusions shown in the images above may not produce an illusory effect due to their relatively small display size
+*many of the illusions shown in the images above may not produce an illusory effect due to their relatively small display size
 
 ## Installation
 Install directly from this GitHub repository in Python terminal:
