@@ -219,6 +219,6 @@ def draw_scintillating(
     return img
 
 # Testing
-if __name__ == "__main__":
-    img = draw_scintillating()
-    img.show()
+#if __name__ == "__main__":
+    #img = draw_scintillating()
+    #img.show()
