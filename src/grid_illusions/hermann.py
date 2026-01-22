@@ -7,7 +7,7 @@ def draw_distorted_line(
     end,
     width,
     fill,
-    strength=2,
+    amplitude=2,
     frequency=2,
     samples=800,
 ):
@@ -21,7 +21,7 @@ def draw_distorted_line(
         x = x1 + (x2 - x1) * t
         y = y1 + (y2 - y1) * t
 
-        offset = strength * math.sin(2 * math.pi * frequency * t)
+        offset = amplitude * math.sin(2 * math.pi * frequency * t)
 
         if abs(x2 - x1) < abs(y2 - y1):  # vertical distorted grid line
             x += offset
@@ -40,7 +40,7 @@ def draw_hermann(
     img_size=(1000, 800),
     grid_zoom=1.1,
     grid_width=20,
-    wiggle_strength=0,
+    wiggle_amplitude=0,
     wiggle_frequency=0,
     blur_strength=0,
     square_colour="black",
@@ -64,8 +64,8 @@ def draw_hermann(
     side *= SCALE
     grid_width *= SCALE
     outline_width *= SCALE
-    raw_wiggle = wiggle_strength
-    wiggle_strength *= SCALE
+    raw_wiggle = wiggle_amplitude
+    wiggle_amplitude *= SCALE
 
     # Centre the square
     x = (big_size[0] - side) // 2
@@ -99,7 +99,7 @@ def draw_hermann(
                 (xi, y + side),
                 width=grid_width,
                 fill=vertical_colour,
-                strength=wiggle_strength,
+                amplitude=wiggle_amplitude,
                 frequency=wiggle_frequency,
             )
 
@@ -120,7 +120,7 @@ def draw_hermann(
                 (x + side, yi),
                 width=grid_width,
                 fill=horizontal_colour,
-                strength=wiggle_strength,
+                amplitude=wiggle_amplitude,
                 frequency=wiggle_frequency,
             )
 
@@ -161,6 +161,6 @@ def draw_hermann(
     return img
 
 # Testing
-if __name__ == "__main__":
-    img = draw_hermann()
-    img.show()
+#if __name__ == "__main__":
+    #img = draw_hermann()
+    #img.show()
