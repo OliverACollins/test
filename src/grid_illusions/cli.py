@@ -29,9 +29,9 @@ def main():
     hermann.add_argument("--size", type=int, default=600, metavar="", help="Size of square (pixels)")
     hermann.add_argument("--img_width", type=int, default=1000, metavar="", help="Width of canvas (pixels)")
     hermann.add_argument("--img_height", type=int, default=800, metavar="", help="Height of canvas (pixels)")
-    hermann.add_argument("--grid_zoom", type=float, default =1.1, metavar="", help="Zoom factor for grid")
+    hermann.add_argument("--grid_zoom", type=float, default=1.1, metavar="", help="Zoom factor for grid")
     hermann.add_argument("--grid_width", type=int, default=20, metavar="", help="Width of grid lines")
-    hermann.add_argument("--wiggle_amplitude", type=int, default=0, metavar="", help="Amplitude of distortion applied to grid lines")
+    hermann.add_argument("--wiggle_amplitude", type=int, default=0, metavar="", help="Displacement of distortion applied to grid lines")
     hermann.add_argument("--wiggle_frequency", type=int, default=0, metavar="", help="Number of waves in distorted grid lines")
     hermann.add_argument("--blur_strength", type=int, default=0, metavar="", help="Strength of Gaussian blur")
     hermann.add_argument("--square_colour", type=str, default="black", metavar="", help="Square fill colour")
@@ -40,7 +40,7 @@ def main():
     hermann.add_argument("--horizontal_colour", type=str, default="white", metavar="", help="Horizontal grid line colour")
     hermann.add_argument("--outline_colour", type =str, default="black", metavar="", help="Colour outline for square")
     hermann.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of outline for square")
-    hermann.add_argument("--save", type=str, default="hermann.png", metavar="", help="Output filename (MUST specify file extension)")
+    hermann.add_argument("--save", type=str, default="hermann.png", metavar="", help="Output filename (MUST specify file extension, e.g., .png, .jpg)")
 
     # Scintillating grid
     scintillating = subparsers.add_parser(
@@ -57,7 +57,7 @@ def main():
     scintillating.add_argument("--img_height", type=int, default=800, metavar="", help="Height of canvas (pixels)")
     scintillating.add_argument("--grid_zoom", type=float, default=1.05, metavar="", help="Zoom factor for grid")
     scintillating.add_argument("--grid_width", type=int, default=6, metavar="", help="Width of grid lines")
-    scintillating.add_argument("--wiggle_amplitude", type=int, default=0, metavar="", help="Amplitude of distortion applied to grid lines")
+    scintillating.add_argument("--wiggle_amplitude", type=int, default=0, metavar="", help="Displacement of distortion applied to grid lines")
     scintillating.add_argument("--wiggle_frequency", type=int, default=0, metavar="", help="Number of waves in distorted grid lines")
     scintillating.add_argument("--blur_strength", type=int, default=0, metavar="", help="Strength of Gaussian blur")
     scintillating.add_argument("--dot_radius", type=int, default=4, metavar="", help="Radius of dots")
@@ -68,7 +68,7 @@ def main():
     scintillating.add_argument("--horizontal_colour", type=str, default="grey", metavar="", help="Horizontal grid line colour")
     scintillating.add_argument("--outline_colour", type =str, default="black", metavar="", help="Colour outline for square")
     scintillating.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of outline for square")
-    scintillating.add_argument("--save", type=str, default="scintillating.png", metavar="", help="Output filename (MUST specify file extension)")
+    scintillating.add_argument("--save", type=str, default="scintillating.png", metavar="", help="Output filename (MUST specify file extension, e.g., .png, .jpg)")
 
     # Bergen grid
     bergen = subparsers.add_parser(
@@ -85,7 +85,7 @@ def main():
     bergen.add_argument("--img_height", type=int, default=800, metavar="", help="Height of canvas (pixels)")
     bergen.add_argument("--grid_zoom", type=float, default=1.05, metavar="", help="Zoom factor for grid")
     bergen.add_argument("--grid_width", type=int, default=7, metavar="", help="Width of grid lines")
-    bergen.add_argument("--wiggle_amplitude", type=int, default=0, metavar="", help="Amplitude of distortion applied to grid lines")
+    bergen.add_argument("--wiggle_amplitude", type=int, default=0, metavar="", help="Displacement of distortion applied to grid lines")
     bergen.add_argument("--wiggle_frequency", type=int, default=0, metavar="", help="Number of waves in distorted grid lines")
     bergen.add_argument("--blur_strength", type=int, default=4, metavar="", help="Strength of Gaussian blur")
     bergen.add_argument("--square_colour", type=str, default="black", metavar="", help="Square fill colour")
@@ -94,7 +94,7 @@ def main():
     bergen.add_argument("--horizontal_colour", type=str, default="white", metavar="", help="Horizontal grid line colour")
     bergen.add_argument("--outline_colour", type =str, default="black", metavar="", help="Colour outline for square")
     bergen.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of outline for square")
-    bergen.add_argument("--save", type=str, default="bergen.png", metavar="", help="Output filename (MUST specify file extension)")
+    bergen.add_argument("--save", type=str, default="bergen.png", metavar="", help="Output filename (MUST specify file extension, e.g., .png, .jpg)")
 
     # Ninio's extinction grid
     ninio = subparsers.add_parser(
@@ -122,7 +122,7 @@ def main():
     ninio.add_argument("--diagonal_colour", type=str, default="grey", metavar="", help="Diagonal grid line colour")
     ninio.add_argument("--outline_colour", type =str, default="black", metavar="", help="Colour outline for square")
     ninio.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of outline for square")
-    ninio.add_argument("--save", type=str, default="ninio.png", metavar="", help="Output filename (MUST specify file extension)")
+    ninio.add_argument("--save", type=str, default="ninio.png", metavar="", help="Output filename (MUST specify file extension, e.g., .png, .jpg)")
 
     # McAnany-Levine extinction grid
     mcanany_levine = subparsers.add_parser(
@@ -139,6 +139,8 @@ def main():
     mcanany_levine.add_argument("--img_height", type=int, default=800, metavar="", help="Height of canvas (pixels)")
     mcanany_levine.add_argument("--grid_zoom", type=float, default=1.05, metavar="", help="Zoom factor for grid")
     mcanany_levine.add_argument("--grid_width", type=int, default=8, metavar="", help="Width of grid lines")
+    mcanany_levine.add_argument("--wiggle_amplitude", type=int, default=0, metavar="", help="Displacement of distortion applied to grid lines")
+    mcanany_levine.add_argument("--wiggle_frequency", type=int, default=0, metavar="", help="Number of waves in distorted grid lines")
     mcanany_levine.add_argument("--blur_strength", type=int, default=0, metavar="", help="Strength of Gaussian blur")
     mcanany_levine.add_argument("--dot_radius", type=int, default=4, metavar="", help="Radius of dots")
     mcanany_levine.add_argument("--dot_colour", type=str, default="white", metavar="", help="Colour of dots")
@@ -148,7 +150,7 @@ def main():
     mcanany_levine.add_argument("--horizontal_colour", type=str, default="#a6a6a6", metavar="", help="Horizontal grid line colour")
     mcanany_levine.add_argument("--outline_colour", type =str, default="black", metavar="", help="Colour outline for square")
     mcanany_levine.add_argument("--outline_width", type=int, default=4, metavar="", help="Width of outline for square")
-    mcanany_levine.add_argument("--save", type=str, default="mcanany_levine.png", metavar="", help="Output filename (MUST specify file extension)")
+    mcanany_levine.add_argument("--save", type=str, default="mcanany_levine.png", metavar="", help="Output filename (MUST specify file extension, e.g., .png, .jpg)")
 
     args = parser.parse_args()
 
@@ -235,6 +237,8 @@ def main():
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
+            wiggle_amplitude=args.wiggle_amplitude,
+            wiggle_frequency=args.wiggle_frequency,
             blur_strength=args.blur_strength,
             dot_radius=args.dot_radius,
             dot_colour=args.dot_colour,

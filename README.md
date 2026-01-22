@@ -4,8 +4,6 @@
 ## Rationale
 The purpose of creating this Python package was to provide an easy-to-use tool for developing simple, customisable grid illusions, tractable for implementation within psychological paradigms. This is the first package that I am aware of to feature all five grid illusions included.
 
-[Try out this demonstration of a simple implementation using this package](LINK HERE)
-
 ## Illusions included in this package
 
 > [!NOTE]
@@ -46,7 +44,7 @@ TEXT HERE - what does "extinction" mean?
 Creating a particularly powerful effect, the McAnany-Levine extinction illusion 
 
 <figure>
- <img src = "src/media/mcanany_levine.png" alt = "Default McAnany-Levine grid illusion"/>
+ <img src = "src/media/mcanany_levine_examples.png" alt = "Default McAnany-Levine grid illusion"/>
 </figure>
 
 For this illusion to work as intended, it is recommended that 
@@ -66,7 +64,8 @@ There are a number of parameters that can be set for each grid illusion, such as
 - `grid_width`: specifies the width of the grid lines (both vertical and horizontal dimensions)
 - `vertical_colour`: change the colour of the vertical grid lines. Here, as with any of the colour arguments, you can use [HTML colour names](https://www.w3schools.com/tags/ref_colornames.asp) or [HEX codes](https://www.color-hex.com/), ensuring that such HEX codes are inputted as a string
 - `horizontal_colour`: change the colour of the vertical grid lines
-- `wiggle_strength`: the amplitude of the distortion applied to the grid lines
+- `diagonal_colour`: for Ninio's extinction illusion only, this sets the colour of the diagonal grid lines
+- `wiggle_amplitude_`: the displacement of the distortion applied to the grid lines
 - `wiggle_frequency`: the number of waves in the grid lines when distorted
 - `blur_strength`: mostly relevant to the Bergen illusion, this controls the Gaussian blur on the image (set to 0 by default for the Hermann and scintillating illusions)
 - `save`: allows one to change the filename (and file path) for the illusion image. It is crucial to specify the file extension (e.g., .png, .jpg, .tiff, .pdf)

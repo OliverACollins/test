@@ -142,6 +142,7 @@ def draw_scintillating(
                 frequency=wiggle_frequency,
             )
 
+    # Draw dots
     for i in range(1, cells):
         for j in range(1, cells):
             xi0 = offset_x + i * step
@@ -149,12 +150,11 @@ def draw_scintillating(
 
             xd, yd = xi0, yi0
 
-            for _ in range(3):  # 2–3 iterations is enough
-                # Parametric positions along the lines
-                ty = (yd - y) / side   # vertical line parameter
-                tx = (xd - x) / side   # horizontal line parameter
+            for _ in range(3):
+                ty = (yd - y) / side    # Vertical
+                tx = (xd - x) / side    # Horizontal
 
-                # Vertical line distortion (x depends on y)
+                # Vertical grid line distortion
                 xd, _ = distort_point(
                     xi0, yd,
                     t=ty,
@@ -163,7 +163,7 @@ def draw_scintillating(
                     frequency=wiggle_frequency,
                 )
 
-                # Horizontal line distortion (y depends on x)
+                # Horizontal grid line distortion
                 _, yd = distort_point(
                     xd, yi0,
                     t=tx,
@@ -219,6 +219,6 @@ def draw_scintillating(
     return img
 
 # Testing
-#if __name__ == "__main__":
-    #img = draw_scintillating()
-    #img.show()
+if __name__ == "__main__":
+    img = draw_scintillating()
+    img.show()
