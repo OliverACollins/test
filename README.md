@@ -8,7 +8,7 @@ The purpose of creating this Python package was to provide an easy-to-use tool f
 
 ## Illusions included in this package
 
-> [!info]
+> [!NOTE]
 > Many of the illusions shown in the images below may not produce an illusory effect due to their relatively small display sizes!
 
 ### Hermann grid illusion
