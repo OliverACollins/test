@@ -5,8 +5,8 @@ def draw_ninio(
     grid_size=(800, 575), #w, h
     img_size=(1000, 800), #w, h
     grid_zoom=1.2,
-    grid_width=6,
-    dot_radius=4.25,
+    grid_width=7,
+    dot_radius=5.5,
     dot_colour="black",
     dot_outline_colour="white",
     square_colour="white",
