@@ -57,7 +57,7 @@ pip install https://github.com/OliverACollins/Grid-Illusions/zipball/main
 
 ## Parameters
 There are a number of parameters that can be set for each grid illusion, such as to vary the <b>strength</b> of an illusion. Examples of these arguments include:
-- `cells`: sets the number of cells in the grid (although, this argument will be influenced visually by the `grid_zoom` argument by default)
+- `cells`: sets the number of cells on each side of the grid (although, this argument will be influenced visually by the `grid_zoom` argument by default)
 - `size`: determines the size of the grid illusion (in pixels)
 - `grid_zoom`: applies a zoom function to the grid to ensure a more natural grid appearance
 - `grid_width`: specifies the width of the grid lines (both vertical and horizontal dimensions)
@@ -65,9 +65,12 @@ There are a number of parameters that can be set for each grid illusion, such as
 - `horizontal_colour`: change the colour of the vertical grid lines
 - `diagonal_colour`: for Ninio's extinction illusion only, this sets the colour of the diagonal grid lines
 - `wiggle_amplitude_`: the displacement of the distortion applied to the grid lines
-- `wiggle_frequency`: the number of waves in the grid lines when distorted
+- `wiggle_frequency`: the number of waves in the grid lines when distorted. It is important to note that, to create a distorted grid, **BOTH** "wiggle" arguments must be used in conjunction
 - `blur_strength`: mostly relevant to the Bergen illusion, this controls the Gaussian blur on the image (set to 0 by default for the Hermann and scintillating illusions)
 - `save`: allows one to change the filename (and file path) for the illusion image. It is crucial to specify the file extension (e.g., .png, .jpg, .tiff, .pdf)
+
+> [!NOTE]
+> Many of these parameters are independent of each other, meaning that a change in one argument will not result in proportionate changes in other arguments.
 
 Key parameters for adjusting illusion strength include:
 

@@ -8,7 +8,7 @@ version = "1.0.0"
 authors = [
     {name = "Oliver A Collins", email = "oliver7collins@outlook.com"}
 ]
-description = "A flexible Python package enabling users to draw the Hermann, scintillating, and Bergen grid illusions."
+description = "A flexible Python package enabling users to draw several different grid illusions, tractable for use within psychology paradigms."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
