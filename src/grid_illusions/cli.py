@@ -157,7 +157,7 @@ def main():
     if args.illusion == "hermann":
         img = draw_hermann(
             cells=args.cells,
-            grid_size=args.size,
+            side=args.size,
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
@@ -213,7 +213,7 @@ def main():
     elif args.illusion == "ninio":
         img = draw_ninio(
             cells=args.cells,
-            side=args.size,
+            grid_size=args.size,
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
             grid_width=args.grid_width,
