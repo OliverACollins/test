@@ -39,7 +39,7 @@ def draw_bergen(
     side=600, 
     img_size=(1000, 800), 
     grid_zoom=1.05, 
-    grid_width=7, 
+    line_width=7, 
     wiggle_amplitude=0,
     wiggle_frequency=0,
     blur_strength=4,
@@ -63,7 +63,7 @@ def draw_bergen(
     grid_draw = ImageDraw.Draw(grid_layer)
 
     side *= SCALE
-    grid_width *= SCALE
+    line_width *= SCALE
     outline_width *= SCALE
     raw_wiggle = wiggle_amplitude
     wiggle_amplitude *= SCALE
@@ -91,14 +91,14 @@ def draw_bergen(
             grid_draw.line(
                 [xi, y, xi, y + side],
                 fill=vertical_colour,
-                width=grid_width
+                width=line_width
             )
         else:
             draw_distorted_line(
                 grid_draw,
                 (xi, y),
                 (xi, y + side),
-                width=grid_width,
+                width=line_width,
                 fill=vertical_colour,
                 amplitude=wiggle_amplitude,
                 frequency=wiggle_frequency,
@@ -112,14 +112,14 @@ def draw_bergen(
             grid_draw.line(
                 [x, yi, x + side, yi],
                 fill=horizontal_colour,
-                width=grid_width
+                width=line_width
             )
         else:
             draw_distorted_line(
                 grid_draw,
                 (x, yi),
                 (x + side, yi),
-                width=grid_width,
+                width=line_width,
                 fill=horizontal_colour,
                 amplitude=wiggle_amplitude,
                 frequency=wiggle_frequency,

@@ -5,7 +5,7 @@ def draw_ninio(
     grid_size=(800, 575), #w, h
     img_size=(1000, 800), #w, h
     grid_zoom=1.2,
-    grid_width=8,
+    line_width=8,
     dot_radius=6,
     dot_colour="black",
     dot_outline_colour="white",
@@ -33,7 +33,7 @@ def draw_ninio(
     grid_w *= SCALE
     grid_h *= SCALE
 
-    grid_width *= SCALE
+    line_width *= SCALE
     dot_radius *= SCALE
     outline_width *= SCALE
 
@@ -69,7 +69,7 @@ def draw_ninio(
         grid_draw.line(
             [xi, offset_y, xi, offset_y + total_h],
             fill=vertical_colour,
-            width=grid_width
+            width=line_width
         )
 
 
@@ -81,11 +81,11 @@ def draw_ninio(
         grid_draw.line(
             [offset_x, yi, offset_x + total_w, yi],
             fill=horizontal_colour,
-            width=grid_width
+            width=line_width
         )
 
 
-    half = grid_width * 0.25
+    half = line_width * 0.25
     
     for row in range(rows):
         for col in range(cols):
@@ -104,7 +104,7 @@ def draw_ninio(
                     [x0 + half, y0 + half,
                     x1 - half, y1 - half],
                     fill=diagonal_colour,
-                    width=grid_width
+                    width=line_width
                 )
             else:
                 # ↗ diagonal
@@ -112,7 +112,7 @@ def draw_ninio(
                     [x0 + half, y1 - half,
                     x1 - half, y0 + half],
                     fill=diagonal_colour,
-                    width=grid_width
+                    width=line_width
                 )
 
     # --- Draw dots at diagonal + orthogonal intersections ---

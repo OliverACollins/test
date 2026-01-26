@@ -30,7 +30,7 @@ def main():
     hermann.add_argument("--img_width", type=int, default=1000, metavar="", help="Width of canvas (pixels)")
     hermann.add_argument("--img_height", type=int, default=800, metavar="", help="Height of canvas (pixels)")
     hermann.add_argument("--grid_zoom", type=float, default=1.1, metavar="", help="Zoom factor for grid")
-    hermann.add_argument("--grid_width", type=int, default=20, metavar="", help="Width of grid lines")
+    hermann.add_argument("--line_width", type=int, default=20, metavar="", help="Width of grid lines")
     hermann.add_argument("--wiggle_amplitude", type=int, default=0, metavar="", help="Displacement of distortion applied to grid lines")
     hermann.add_argument("--wiggle_frequency", type=int, default=0, metavar="", help="Number of waves in distorted grid lines")
     hermann.add_argument("--blur_strength", type=int, default=0, metavar="", help="Strength of Gaussian blur")
@@ -56,7 +56,7 @@ def main():
     scintillating.add_argument("--img_width", type=int, default=1000, metavar="", help="Width of canvas (pixels)")
     scintillating.add_argument("--img_height", type=int, default=800, metavar="", help="Height of canvas (pixels)")
     scintillating.add_argument("--grid_zoom", type=float, default=1.05, metavar="", help="Zoom factor for grid")
-    scintillating.add_argument("--grid_width", type=int, default=6, metavar="", help="Width of grid lines")
+    scintillating.add_argument("--line_width", type=int, default=6, metavar="", help="Width of grid lines")
     scintillating.add_argument("--wiggle_amplitude", type=int, default=0, metavar="", help="Displacement of distortion applied to grid lines")
     scintillating.add_argument("--wiggle_frequency", type=int, default=0, metavar="", help="Number of waves in distorted grid lines")
     scintillating.add_argument("--blur_strength", type=int, default=0, metavar="", help="Strength of Gaussian blur")
@@ -84,7 +84,7 @@ def main():
     bergen.add_argument("--img_width", type=int, default=1000, metavar="", help="Width of canvas (pixels)")
     bergen.add_argument("--img_height", type=int, default=800, metavar="", help="Height of canvas (pixels)")
     bergen.add_argument("--grid_zoom", type=float, default=1.05, metavar="", help="Zoom factor for grid")
-    bergen.add_argument("--grid_width", type=int, default=7, metavar="", help="Width of grid lines")
+    bergen.add_argument("--line_width", type=int, default=7, metavar="", help="Width of grid lines")
     bergen.add_argument("--wiggle_amplitude", type=int, default=0, metavar="", help="Displacement of distortion applied to grid lines")
     bergen.add_argument("--wiggle_frequency", type=int, default=0, metavar="", help="Number of waves in distorted grid lines")
     bergen.add_argument("--blur_strength", type=int, default=4, metavar="", help="Strength of Gaussian blur")
@@ -110,7 +110,7 @@ def main():
     ninio.add_argument("--img_width", type=int, default=1000, metavar="", help="Width of canvas (pixels)")
     ninio.add_argument("--img_height", type=int, default=800, metavar="", help="Height of canvas (pixels)")
     ninio.add_argument("--grid_zoom", type=float, default=1.2, metavar="", help="Zoom factor for grid")
-    ninio.add_argument("--grid_width", type=int, default=8, metavar="", help="Width of grid lines")
+    ninio.add_argument("--line_width", type=int, default=8, metavar="", help="Width of grid lines")
     ninio.add_argument("--blur_strength", type=int, default=0, metavar="", help="Strength of Gaussian blur")
     ninio.add_argument("--dot_radius", type=int, default=6, metavar="", help="Radius of dots")
     ninio.add_argument("--dot_colour", type=str, default="black", metavar="", help="Colour of dots")
@@ -138,7 +138,7 @@ def main():
     mcanany_levine.add_argument("--img_width", type=int, default=1000, metavar="", help="Width of canvas (pixels)")
     mcanany_levine.add_argument("--img_height", type=int, default=800, metavar="", help="Height of canvas (pixels)")
     mcanany_levine.add_argument("--grid_zoom", type=float, default=1.05, metavar="", help="Zoom factor for grid")
-    mcanany_levine.add_argument("--grid_width", type=int, default=8, metavar="", help="Width of grid lines")
+    mcanany_levine.add_argument("--line_width", type=int, default=8, metavar="", help="Width of grid lines")
     mcanany_levine.add_argument("--wiggle_amplitude", type=int, default=0, metavar="", help="Displacement of distortion applied to grid lines")
     mcanany_levine.add_argument("--wiggle_frequency", type=int, default=0, metavar="", help="Number of waves in distorted grid lines")
     mcanany_levine.add_argument("--blur_strength", type=int, default=0, metavar="", help="Strength of Gaussian blur")
@@ -160,7 +160,7 @@ def main():
             side=args.size,
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
-            grid_width=args.grid_width,
+            line_width=args.line_width,
             wiggle_amplitude=args.wiggle_amplitude,
             wiggle_frequency=args.wiggle_frequency,
             blur_strength=args.blur_strength,
@@ -178,7 +178,7 @@ def main():
             side=args.size,
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
-            grid_width=args.grid_width,
+            line_width=args.line_width,
             wiggle_amplitude=args.wiggle_amplitude,
             wiggle_frequency=args.wiggle_frequency,
             blur_strength=args.blur_strength,
@@ -198,7 +198,7 @@ def main():
             side=args.size,
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
-            grid_width=args.grid_width,
+            line_width=args.line_width,
             wiggle_amplitude=args.wiggle_amplitude,
             wiggle_frequency=args.wiggle_frequency,
             blur_strength=args.blur_strength,
@@ -216,7 +216,7 @@ def main():
             grid_size=args.size,
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
-            grid_width=args.grid_width,
+            line_width=args.line_width,
             blur_strength=args.blur_strength,
             dot_radius=args.dot_radius,
             dot_colour=args.dot_colour,
@@ -236,7 +236,7 @@ def main():
             side=args.size,
             img_size=(args.img_width, args.img_height),
             grid_zoom=args.grid_zoom,
-            grid_width=args.grid_width,
+            line_width=args.line_width,
             wiggle_amplitude=args.wiggle_amplitude,
             wiggle_frequency=args.wiggle_frequency,
             blur_strength=args.blur_strength,
