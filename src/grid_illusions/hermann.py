@@ -161,6 +161,6 @@ def draw_hermann(
     return img
 
 # Testing
-#if __name__ == "__main__":
-    #img = draw_hermann()
-    #img.show()
+if __name__ == "__main__":
+    img = draw_hermann()
+    img.show()

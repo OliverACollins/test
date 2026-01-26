@@ -162,6 +162,6 @@ def draw_bergen(
     return img
 
 # Testing
-#if __name__ == "__main__":
-    #img = draw_bergen()
-    #img.show()
+if __name__ == "__main__":
+    img = draw_bergen()
+    img.show()

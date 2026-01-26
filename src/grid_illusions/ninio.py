@@ -1,86 +1,12 @@
 from PIL import Image, ImageDraw, ImageFilter
-import math
 
-def distort_point(
-    x, y,
-    t,
-    orientation,
-    strength,
-    frequency,
-):
-    offset = strength * math.sin(2 * math.pi * frequency * t)
-
-    if orientation == "vertical":
-        return x + offset, y
-
-    elif orientation == "horizontal":
-        return x, y + offset
-
-    elif orientation == "diag_pos":  # ↘
-        # perpendicular is (1, -1)
-        d = offset / math.sqrt(2)
-        return x + d, y - d
-
-    elif orientation == "diag_neg":  # ↗
-        # perpendicular is (1, 1)
-        d = offset / math.sqrt(2)
-        return x + d, y + d
-
-def draw_distorted_line(
-    draw,
-    start,
-    end,
-    width,
-    fill,
-    orientation,
-    strength=2,
-    frequency=2,
-    samples=800,
-):
-    r = width / 2
-    x1, y1 = start
-    x2, y2 = end
-
-    for i in range(samples + 1):
-        t = i / samples
-
-        # ---- ADD THIS ----
-        if orientation == "vertical":
-            phase = x1
-        elif orientation == "horizontal":
-            phase = y1
-        else:  # diagonals
-            phase = x1 + y1
-
-        t_eff = t + phase * 0.002
-        # ------------------
-
-        x = x1 + (x2 - x1) * t
-        y = y1 + (y2 - y1) * t
-
-        x, y = distort_point(
-            x, y,
-            t=t_eff,
-            orientation=orientation,
-            strength=strength,
-            frequency=frequency
-        )
-
-        draw.ellipse(
-            (x - r, y - r, x + r, y + r),
-            fill=fill
-        )
-        
 def draw_ninio(
-    cells=8,
-    side=600,
-    img_size=(1000, 800),
-    grid_zoom=1.05,
+    cells=(16, 16), #w, h
+    grid_size=(800, 575), #w, h
+    img_size=(1000, 800), #w, h
+    grid_zoom=1.2,
     grid_width=6,
-    wiggle_strength=1,
-    wiggle_frequency=2,
-    blur_strength=0,
-    dot_radius=4.5,
+    dot_radius=4.25,
     dot_colour="black",
     dot_outline_colour="white",
     square_colour="white",
@@ -89,7 +15,8 @@ def draw_ninio(
     horizontal_colour="grey",
     diagonal_colour="grey",
     outline_colour="black",
-    outline_width=4
+    outline_width=4,
+    blur_strength=0
 ):
     
     # Anti-aliasing
@@ -98,196 +25,154 @@ def draw_ninio(
     big_size = (img_size[0] * SCALE, img_size[1] * SCALE)
 
     img_big = Image.new("RGB", big_size, canvas_colour)
-    draw = ImageDraw.Draw(img_big)
 
     grid_layer = Image.new("RGBA", big_size, (0, 0, 0, 0))
     grid_draw = ImageDraw.Draw(grid_layer)
 
-    side *= SCALE
+    grid_w, grid_h = grid_size
+    grid_w *= SCALE
+    grid_h *= SCALE
+
     grid_width *= SCALE
     dot_radius *= SCALE
     outline_width *= SCALE
-    raw_wiggle = wiggle_strength
-    wiggle_strength *= SCALE
 
     # Centre the square
-    x = (big_size[0] - side) // 2
-    y = (big_size[1] - side) // 2
+    x = (big_size[0] - grid_w) // 2
+    y = (big_size[1] - grid_h) // 2
 
-    # Draw square background
-    grid_draw.rectangle([x, y, x + side, y + side], fill=square_colour)
+    # Fill the square
+    grid_draw.rectangle([x, y, x + grid_w, y + grid_h], fill=square_colour)
 
-    # Scale zoom
-    step = (side / cells) * grid_zoom
+    cols, rows = cells
 
-    # Centre the grid
-    total = step * cells
-    offset_x = x + (side - total) / 2
-    offset_y = y + (side - total) / 2
+    # --- COVER scaling: grid ALWAYS fills the frame ---
+    cell_size = max(
+        grid_w / cols,
+        grid_h / rows
+    ) * grid_zoom
+
+    step_x = step_y = cell_size
+
+    total_w = step_x * cols
+    total_h = step_y * rows
+
+    # Anchor grid to the frame (no centering = no margins)
+    offset_x = x + (grid_w - total_w) / 2
+    offset_y = y + (grid_h - total_h) / 2
 
     # Draw vertical grid lines
-    for i in range(1, cells):
-        xi = offset_x + i * step
+    for i in range(1, cols):
+        xi = offset_x + i * step_x
+        if xi >= offset_x + total_w:
+            break
+        grid_draw.line(
+            [xi, offset_y, xi, offset_y + total_h],
+            fill=vertical_colour,
+            width=grid_width
+        )
 
-        if raw_wiggle == 0:
-            grid_draw.line(
-                [xi, y, xi, y + side],
-                fill=vertical_colour,
-                width=grid_width
-            )
-        else:
-            draw_distorted_line(
-                grid_draw,
-                (xi, y),
-                (xi, y + side),
-                width=grid_width,
-                fill=vertical_colour,
-                orientation="vertical",
-                strength=wiggle_strength,
-                frequency=wiggle_frequency,
-            )
 
     # Draw horizontal grid lines
-    for i in range(1, cells):
-        yi = offset_y + i * step
+    for j in range(1, rows):
+        yi = offset_y + j * step_y
+        if yi >= offset_y + total_h:
+            break
+        grid_draw.line(
+            [offset_x, yi, offset_x + total_w, yi],
+            fill=horizontal_colour,
+            width=grid_width
+        )
 
-        if raw_wiggle == 0:
-            grid_draw.line(
-                [x, yi, x + side, yi],
-                fill=horizontal_colour,
-                width=grid_width
-            )
-        else:
-            draw_distorted_line(
-                grid_draw,
-                (x, yi),
-                (x + side, yi),
-                width=grid_width,
-                fill=horizontal_colour,
-                orientation="horizontal",
-                strength=wiggle_strength,
-                frequency=wiggle_frequency,
-            )
 
-    # Draw diagonal grid lines
-    for row in range(cells):
-        for col in range(cells):
-            x0 = offset_x + col * step
-            y0 = offset_y + row * step
-            x1 = x0 + step
-            y1 = y0 + step
+    half = grid_width * 0.25
+    
+    for row in range(rows):
+        for col in range(cols):
+            x0 = offset_x + col * step_x
+            y0 = offset_y + row * step_y
 
-            if raw_wiggle == 0:
+            if x0 >= offset_x + total_w or y0 >= offset_y + total_h:
+                continue
+
+            x1 = x0 + step_x
+            y1 = y0 + step_y
+
+            if (row + col) % 2 == 0:
+                # ↘ diagonal
                 grid_draw.line(
-                    [x0, y0, x1, y1],
-                    fill=diagonal_colour,
-                    width=grid_width
-                )
-                grid_draw.line(
-                    [x0, y1, x1, y0],
+                    [x0 + half, y0 + half,
+                    x1 - half, y1 - half],
                     fill=diagonal_colour,
                     width=grid_width
                 )
             else:
-                draw_distorted_line(
-                    grid_draw,
-                    (x0, y0),
-                    (x1, y1),
-                    width=grid_width,
+                # ↗ diagonal
+                grid_draw.line(
+                    [x0 + half, y1 - half,
+                    x1 - half, y0 + half],
                     fill=diagonal_colour,
-                    orientation="diag_pos",
-                    strength=wiggle_strength,
-                    frequency=wiggle_frequency * math.sqrt(2),
+                    width=grid_width
                 )
 
-                draw_distorted_line(
-                    grid_draw,
-                    (x0, y1),
-                    (x1, y0),
-                    width=grid_width,
-                    fill=diagonal_colour,
-                    orientation="diag_neg",
-                    strength=wiggle_strength,
-                    frequency=wiggle_frequency * math.sqrt(2),
-                )
-
-    # Draw dots at grid intersections
+    # --- Draw dots at diagonal + orthogonal intersections ---
     halo_ratio = 1.25
-    outline_radius = int(dot_radius * halo_ratio)
+    outline_radius = dot_radius * halo_ratio
 
-    for i in range(1, cells):
-        for j in range(1, cells):
-            if i % 2 == 0 and j % 2 == 0:
-                xi0 = offset_x + i * step
-                yi0 = offset_y + j * step
+    dots_per_row = 4
 
-                xd, yd = xi0, yi0
+    dot_stride_x = cols // dots_per_row
+    dot_stride_y = rows // dots_per_row
 
-                for _ in range(3):
-                    ty = (yd - y) / side
-                    tx = (xd - x) / side
+    for j in range(0, rows, dot_stride_y):
+        for i in range(0, cols, dot_stride_x):
 
-                    xd, _ = distort_point(
-                        xi0, yd,
-                        t=ty,
-                        orientation="vertical",
-                        strength=wiggle_strength,
-                        frequency=wiggle_frequency
-                    )
+            xi = offset_x + (i + 2) * step_x
+            yi = offset_y + j * step_y
 
-                    _, yd = distort_point(
-                        xd, yi0,
-                        t=tx,
-                        orientation="horizontal",
-                        strength=wiggle_strength,
-                        frequency=wiggle_frequency
-                    )
+            if xi >= offset_x + total_w or yi >= offset_y + total_h:
+                continue
 
-                # halo
-                grid_draw.ellipse(
-                    [xd - outline_radius, yd - outline_radius,
-                    xd + outline_radius, yd + outline_radius],
-                    fill=dot_outline_colour
-                )
+            grid_draw.ellipse(
+                [xi - outline_radius, yi - outline_radius,
+                xi + outline_radius, yi + outline_radius],
+                fill=dot_outline_colour
+            )
 
-                # dot
-                grid_draw.ellipse(
-                    [xd - dot_radius, yd - dot_radius,
-                    xd + dot_radius, yd + dot_radius],
-                    fill=dot_colour
-                )
+            grid_draw.ellipse(
+                [xi - dot_radius, yi - dot_radius,
+                xi + dot_radius, yi + dot_radius],
+                fill=dot_colour
+            )
 
-    # Fill the square
+
+
+
     mask = Image.new("L", big_size, 0)
     mask_draw = ImageDraw.Draw(mask)
 
     mask_draw.rectangle(
-        [x, y, x + side, y + side],
+        [x, y, x + grid_w, y + grid_h],
         fill=255
     )
 
-    # Clip the grid to the square
     grid_layer.putalpha(mask)
 
-    # Alpha-composite grid over square
     img_big = Image.alpha_composite(
-        img_big.convert("RGBA"),
-        grid_layer
+    img_big.convert("RGBA"),
+    grid_layer
     ).convert("RGB")
+    
 
-    # Draw outer square outline
-    final_draw = ImageDraw.Draw(img_big)
-    final_draw.rectangle(
-        [x, y, x + side, y + side],
-        outline=outline_colour,
-        width=outline_width,
+    ImageDraw.Draw(img_big).rectangle(
+    [x, y, x + grid_w, y + grid_h],
+    outline=outline_colour,
+    width=outline_width
     )
 
     # Apply blur
     if blur_strength > 0:
-        img_big = img_big.filter(
-            ImageFilter.GaussianBlur(blur_strength * SCALE)
-        )
+        img_big = img_big.filter(ImageFilter.GaussianBlur(blur_strength))
 
     # Downsample for anti-aliasing
     img = img_big.resize(img_size, Image.LANCZOS)

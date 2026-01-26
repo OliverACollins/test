@@ -2,8 +2,8 @@ from PIL import Image, ImageDraw, ImageFilter
 
 def draw_ninio(
     cells=10,
-    side=400,
-    img_size=(800, 600),
+    side=600,
+    img_size=(1000, 800),
     grid_zoom=1.05,
     grid_width=4,
     dot_radius=3,
