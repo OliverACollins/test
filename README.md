@@ -1,4 +1,4 @@
-# Grid-Illusions
+# PyGrid
 **A flexible Python package enabling users to draw several different grid illusions.**
 
 ## Rationale
@@ -52,7 +52,7 @@ For this illusion to work as intended, it is recommended that
 Install directly from this GitHub repository in Python terminal:
 
 ```python
-pip install https://github.com/OliverACollins/Grid-Illusions/zipball/main
+pip install https://github.com/OliverACollins/PyGrid/zipball/main
 ```
 
 ## Parameters
@@ -79,35 +79,35 @@ Key parameters for adjusting illusion strength include:
 To generate each illusion, you can run the following commands in the Python terminal:
 
 ```python
-grid-illusions hermann
+PyGrid hermann
 ```
 
 ```python
-grid-illusions scintillating
+PyGrid scintillating
 ```
 
 ```python
-grid-illusions bergen
+PyGrid bergen
 ```
 
 ```python
-grid-illusions ninio
+PyGrid ninio
 ```
 
 ```python
-grid-illusions mcanany-levine
+PyGrid mcanany-levine
 ```
 
 To view the parameters included for each illusion, simply use the `--help` option in the Python terminal to read a brief description of what each argument does and its default setting:
 
 ```python
-grid-illusions hermann --help
+PyGrid hermann --help
 ```
 
 Parameters can be specified in the following manner:
 
 ```python
-grid-illusions hermann --size 300 --grid_width 8 --vertical_colour blue --horizontal_colour blue
+PyGrid hermann --size 300 --grid_width 8 --vertical_colour blue --horizontal_colour blue
 ```
 
 ## Usage: Python script

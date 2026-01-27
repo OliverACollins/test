@@ -25,7 +25,7 @@ Homepage = "https://github.com/OliverACollins/PyGrid"
 Issues = "https://github.com/OliverACollins/PyGrid/issues"
 
 [project.scripts]
-pygrid = "pygrid.cli:main"
+pygrid = "pygrid.grid_illusions:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/grid_illusions"]
