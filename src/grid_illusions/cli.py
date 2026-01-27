@@ -106,7 +106,7 @@ def main():
 
     ninio.add_argument("--help", action="help", help="")
     ninio.add_argument("--cells", nargs=2, type=int, default=(16, 16), metavar=("COLS", "ROWS"), help="Number of cells on each side of the grid")
-    ninio.add_argument("--size", nargs=2, type=int, default=(800, 575), metavar="", help="Size of grid illusion (pixels)")
+    ninio.add_argument("--size", nargs=2, type=int, default=(800, 575), metavar=("WIDTH", "HEIGHT"), help="Size of grid illusion (pixels)")
     ninio.add_argument("--img_width", type=int, default=1000, metavar="", help="Width of canvas (pixels)")
     ninio.add_argument("--img_height", type=int, default=800, metavar="", help="Height of canvas (pixels)")
     ninio.add_argument("--grid_zoom", type=float, default=1.2, metavar="", help="Zoom factor for grid")
