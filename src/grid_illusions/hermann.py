@@ -152,9 +152,7 @@ def draw_hermann(
 
     # Apply blur
     if blur_strength > 0:
-        img_big = img_big.filter(
-            ImageFilter.GaussianBlur(blur_strength * SCALE)
-        )
+        img_big = img_big.filter(ImageFilter.GaussianBlur(blur_strength * SCALE))
 
     # Downsample
     img = img_big.resize(img_size, Image.LANCZOS)

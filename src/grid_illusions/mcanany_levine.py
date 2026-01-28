@@ -221,9 +221,7 @@ def draw_mcanany_levine(
 
     # Apply blur
     if blur_strength > 0:
-        img_big = img_big.filter(
-            ImageFilter.GaussianBlur(blur_strength * SCALE)
-        )
+        img_big = img_big.filter(ImageFilter.GaussianBlur(blur_strength * SCALE))
 
     # Downsample for anti-aliasing
     img = img_big.resize(img_size, Image.LANCZOS)
